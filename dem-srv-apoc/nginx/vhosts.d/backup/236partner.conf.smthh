@@ -1,4 +1,0 @@
-        location ~* (.*)/tr9.*pmid.236/(.*) {
-                rewrite ^(.*)$ http://pulse.mts.ru/;
-                break;
-        }
