@@ -1,0 +1,17 @@
+##############################################################
+# Copyright (c) 2010-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# Italian translations for hgfsUsability messages.
+#
+
+sharedfolders.name = "Cartelle condivise VMware"
+
+redirect.logout.message =
+   "VMware Tools ha modificato le impostazioni per abilitare la condivisione "
+   "dei dati con l'host. Perché le modifiche siano effettive, è necessario "
+   "chiudere la sessione. Premere OK per eseguire il logout. Premere Annulla "
+   "per eseguire il logout in seguito."
+
+redirect.logout.title = "VMware Tools"
+

@@ -1,0 +1,8 @@
+                #Nsk office
+                RewriteCond %{REMOTE_ADDR}  !87.226.164.162
+                RewriteCond %{REMOTE_ADDR}  !87.226.175.([8-9]|1[0-5])
+                RewriteCond %{REMOTE_ADDR}  !194.0.120.198
+
+                #Msk office
+                RewriteCond %{REMOTE_ADDR}  !195.128.49.102
+                RewriteCond %{REMOTE_ADDR}  !195.128.52

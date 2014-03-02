@@ -1,0 +1,590 @@
+# Black list for aggregation services
+	<IfModule mod_rewrite.c>
+                RewriteEngine   On
+       		RewriteCond %{HTTP_HOST} free.hentaimobile.ru	
+		RewriteCond %{REQUEST_URI}        ^/[0-9]{4}/.*$
+		Include /etc/apache2/conf/IP/httpstat_banlist.conf
+#	Include /etc/apache2/vhosts.d/banlist.conf
+                RewriteRule  ^/(.*)$  http://%{HTTP_HOST}/x.xhtml [L]
+	</IfModule>
+
+
+        ProxyPassMatch ^/1043/(.*spaces.ru)/(.*)$ http://$1/$2
+
+        <LocationMatch "^/1043/(.*spaces.ru)/(.*)$">
+                ProxyPassReverse /
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+### Proxy for Space
+       ProxyPass /1043/ http://spaces.ru/
+       <Location /1043/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+                RequestHeader  unset  Accept-Encoding
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+
+        ProxyPass /11981/         http://vtakt.ru/
+        <Location /11981/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+	ProxyPass /11982/         http://zagruzki.vipfon.ru/
+        <Location /11982/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+
+# Ticket# : 102411
+
+        ProxyPass /1317/         http://tumak.ru/
+        <Location /1317/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+
+#ticket#: 102585
+	ProxyPass /1399/         http://o5wap.ru/
+        <Location /1399/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+
+#proxy for bitmob.ru Ticket# 10374
+        ProxyPass /1553/         http://bitmob.ru/
+        <Location /1553/>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+# proxy for infan.ru Ticket# : 103784
+        ProxyPassMatch ^/1667/(.*infan.ru)/(.*)$ http://$1/$2
+        <LocationMatch ^/1667/(.*infan.ru)/(.*)$>
+                ProxyPassReverse /
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+#proxy for artemka.ru
+        ProxyPassMatch ^/1874/(.*artemka.ru)/(.*)$ http://$1/$2
+        <LocationMatch ^/1874/(.*artemka.ru)/(.*)$>
+                ProxyPassReverse /
+		Header  unset Cache-Control
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+        ProxyPass /1875/pupsa.net/  http://pupsa.net/
+        <Location /1875/pupsa.net/>
+                ProxyPassReverse /
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1875/pupsa.net/
+                ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1875/pupsa.net/ 
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+####
+
+
+# proxy for dimonvideo.ru
+        ProxyPassMatch ^/1786/(.*dimonvideo.ru)/(.*)$ http://$1/$2
+        <LocationMatch ^/1786/(.*dimonvideo.ru)/(.*)$>
+                ProxyPassReverse /
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+
+# proxy for waprik OMG almost this waprik
+#
+       ProxyPass /1498/ar.waprik.ru/   http://ar.waprik.ru/
+       <Location /1498/ar.waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/ar.waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/ero.waprik.ru/   http://ero.waprik.ru/
+       <Location /1498/ero.waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/ero.waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/music.waprik.ru/   http://music.waprik.ru/
+       <Location /1498/musci.waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/music.waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/waprik.ru/   http://waprik.ru/
+       <Location /1498/waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/m.waprik.ru/   http://m.waprik.ru/
+       <Location /1498/m.waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/m.waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/t.waprik.ru/   http://t.waprik.ru/
+       <Location /1498/t.waprik.ru/>
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1498/t.waprik.ru/
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/th.waprik.ru/   http://th.waprik.ru/
+       <Location /1498/th.waprik.ru/>
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+       ProxyPass /1498/erotika.waprik.ru/   http://erotika.waprik.ru/
+       <Location /1498/erotika.waprik.ru/>
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+       
+       ProxyPass /1498/all.waprik.ru/   http://all.waprik.ru/
+       <Location /1498/all.waprik.ru/>
+                RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+      
+      ProxyPass /1498/vid.waprik.ru/   http://vid.waprik.ru/
+      <Location /1498/vid.waprik.ru/>
+		RequestHeader  unset  Accept-Encoding
+	      	Header  unset Cache-Control
+	      	Header  unset Expires
+	      	Header  add Cache-Control no-store,no-cache,must-revalidate
+	      	Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </Location>
+    
+                                                                                              
+#proxy for hrusha.ne
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST} free.hentaimobile.ru
+                RewriteCond %{REQUEST_URI}        ^/wpu_content/.*$
+		RewriteCond %{HTTP_REFERER}        free.hentaimobile.ru/1990/hrusha.net/
+                RewriteRule ^/(.*)$  http://free.hentaimobile.ru/1990/hrusha.net/$1 [L]
+        </IfModule>
+
+       ProxyPass /1990/hrusha.net/   http://hrusha.net/
+       <Location /1990/hrusha.net/>
+	        ProxyPassReverse /
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1990/hrusha.net/
+		ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1990/hrusha.net/
+		RequestHeader  unset  Accept-Encoding
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </Location>
+
+#proxy for webfile.ru
+
+        ProxyPassMatch ^/1991/(.*webfile.ru)/(.*)$ http://$1/$2
+        <LocationMatch ^/1991/(.*webfile.ru)/(.*)$>
+                ProxyPassReverse /
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+#PROXY for LovePlanet
+#ticket #117126
+        ProxyPassMatch ^/1992/loveplanet.ru/(195\.[0-9].*)/(.*)$ http://$1/$2
+        <LocationMatch ^/1992/loveplanet.ru/(195\.[0-9].*)/(.*)$>
+                ProxyPassReverse /
+		Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+#proxy for vladoni.ru
+        ProxyPassMatch ^/2000/(zozi.ru|vladoni.ru|avtoreg.net|ceternapl.net)/(.*)$ http://$1/$2
+        <LocationMatch ^/2000/(zozi.ru|vladoni.ru|avtoreg.net|ceternapl.net)/(.*)$>
+	        ProxyPassReverse /
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+##
+#
+#
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#proxy for wep.ru +++++ ticket 127341
+
+
+	ProxyPass /1996/chat.wep.ru/         http://chat.wep.ru/
+        <Location /1996/chat.wep.ru/>
+                ProxyPassReverse /
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1996/chat.wep.ru/
+                ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1996/chat.wep.ru/
+
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+	ProxyPass /1996/wap.civa.ru/         http://wap.civa.ru/
+        <Location /1996/wap.civa.ru/>
+                ProxyPassReverse /
+                ProxyHTMLEnable On
+                ProxyHTMLURLMap / /1996/wap.civa.ru/
+                ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1996/wap.civa.ru/
+                RequestHeader  unset  Accept-Encoding
+                Header  unset Cache-Control
+		Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+
+# proxy for vkarmane.fm Ticket# : 129156
+
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST} free.hentaimobile.ru
+                RewriteCond %{REQUEST_URI}        ^/vkarmane.fm_.*/.*$
+                RewriteCond %{HTTP_REFERER}        free.hentaimobile.ru/1997/vkarmane.fm/
+                RewriteRule ^/(.*)$  http://free.hentaimobile.ru/1997/vkarmane.fm/$1 [L]
+        </IfModule>
+
+       ProxyPass /1997/vkarmane.fm/   http://vkarmane.fm/
+              <Location /1997/vkarmane.fm/>
+                      ProxyPassReverse /
+                      ProxyHTMLEnable On
+                      ProxyHTMLURLMap / /1997/vkarmane.fm/
+                      ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1997/vkarmane.fm/
+                      RequestHeader  unset  Accept-Encoding
+		      Header  unset Cache-Control
+		      Header  unset Expires
+                      Header  add Cache-Control no-store,no-cache,must-revalidate
+                      Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+             </Location>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST} free.hentaimobile.ru
+                RewriteCond %{REQUEST_URI}        ^/vkarmane.fm_.*/.*$
+                RewriteCond %{HTTP_REFERER}        free.hentaimobile.ru/1997/wap.vkarmane.fm/
+                RewriteRule ^/(.*)$  http://free.hentaimobile.ru/1997/wap.vkarmane.fm/$1 [L]
+        </IfModule>
+
+       ProxyPass /1997/wap.vkarmane.fm/   http://wap.vkarmane.fm/
+                     <Location /1997/wap.vkarmane.fm/>
+                         ProxyPassReverse /
+                         ProxyHTMLEnable On
+                         ProxyHTMLURLMap / /1997/wap.vkarmane.fm/
+                         ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1997/wap.vkarmane.fm/
+			 RequestHeader  unset  Accept-Encoding
+			 Header  unset Cache-Control
+			 Header  unset Expires
+			 Header  add Cache-Control no-store,no-cache,must-revalidate
+			 Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+		</Location>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST} free.hentaimobile.ru
+                RewriteCond %{REQUEST_URI}        ^/vkarmane.fm_.*/.*$
+                RewriteCond %{HTTP_REFERER}        free.hentaimobile.ru/1997/www.vkarmane.fm/
+                RewriteRule ^/(.*)$  http://free.hentaimobile.ru/1997/www.vkarmane.fm/$1 [L]
+        </IfModule>
+
+       ProxyPass /1997/www.vkarmane.fm/   http://www.vkarmane.fm/
+                     <Location /1997/www.vkarmane.fm/>
+                             ProxyPassReverse /
+                             ProxyHTMLEnable On
+                             ProxyHTMLURLMap / /1997/www.vkarmane.fm/
+                             ProxyHTMLURLMap  http://free.hentaimobile.ru/ http://free.hentaimobile.ru/1997/www.vkarmane.fm/
+			     RequestHeader  unset  Accept-Encoding
+			     Header  unset Cache-Control
+			     Header  unset Expires
+			     Header  add Cache-Control no-store,no-cache,must-revalidate
+			     Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+		     </Location>
+# end proxy vkarmane.fm
+
+#proxy for letitbit.net 
+        ProxyPassMatch ^/2004/(.*letitbit.net)/(.*)$   http://$1/$2
+        <LocationMatch ^/2004/(.*letitbit.net)/(.*)$>
+                 ProxyPassReverse /
+		 Header  unset Cache-Control
+		 Header  unset Expires
+                 Header  add Cache-Control no-store,no-cache,must-revalidate
+                 Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+# end proxy for letitbit.net 
+
+
+#proxy for h2m.ru
+        ProxyPassMatch ^/2006/(.*h2m.ru)/(.*)$   http://$1/$2
+        <LocationMatch ^/2006/(.*h2m.ru)/(.*)$>
+                 ProxyPassReverse /
+		 Header  unset Expires
+		 Header  unset Cache-Control
+                 Header  add Cache-Control no-store,no-cache,must-revalidate
+                 Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+# end proxy for h2m.ru
+
+
+#proxy for h2m.ru
+        ProxyPassMatch ^/2007/(.*iwse.ru)/(.*)$   http://$1/$2
+        <LocationMatch ^/2007/(.*iwse.ru)/(.*)$>
+	        ProxyPassReverse /
+		Header  unset Expires
+		Header  unset Cache-Control
+		Header  add Cache-Control no-store,no-cache,must-revalidate
+		Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+	</LocationMatch>
+# end proxy for h2m.ru
+                                                                                                      
+
+
+        ProxyPass /2002/   	http://m.o4evidec.ru/nextmedia/
+	ProxyPassReverse /2002/	http://m.o4evidec.ru/nextmedia/
+
+        <Location /2002/>
+		 Header  unset Cache-Control
+		 Header  unset Expires
+                 Header  add Cache-Control no-store,no-cache,must-revalidate
+                 Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+#mobifunpics.com
+#
+
+        ProxyPassMatch ^/2009/(.*mobifunpics.com)/(.*)$   http://$1/$2
+        <LocationMatch ^/2009/(.*mobifunpics.com)/(.*)$>
+              ProxyPassReverse /
+              Header  unset Cache-Control
+              Header  unset Expires
+              Header  add Cache-Control no-store,no-cache,must-revalidate
+	      Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </LocationMatch>
+
+	ProxyPassMatch ^/2009/(.*wap4fun.ru)/(.*)$   http://$1/$2
+        <LocationMatch ^/2009/(.*wap4fun.ru)/(.*)$>
+	       ProxyPassReverse /
+	       Header  unset Cache-Control
+	       Header  unset Expires
+	       Header  add Cache-Control no-store,no-cache,must-revalidate
+	       Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+										     
+#roodimox.com
+        ProxyPassMatch ^/2008/(.*roodimox.com)/(.*)$   http://$1/$2
+	<LocationMatch ^/2008/(.*roodimox.com)/(.*)$>
+              ProxyPassReverse /
+              Header  unset Cache-Control
+              Header  unset Expires
+              Header  add Cache-Control no-store,no-cache,must-revalidate
+              Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </LocationMatch>
+
+
+    # proxy for partner2010 - wape.ru
+
+  	 ProxyPassMatch ^/2010/(.*wape.ru|.*yetoya.ru)/(.*)$   http://$1/$2
+         <LocationMatch ^/2010/(.*wape.ru|.*yetoya.ru)/(.*)$>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+                Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+         </LocationMatch>
+   # end proxy partner2010 -  wape.ru    
+
+      # proxy for partner2011- mobfilms.ru
+
+      ProxyPassMatch ^/2011/(.*mobfilms.ru)/(.*)$   http://$1/$2
+      <LocationMatch ^/2011/(.*mobfilms.ru)/(.*)$>
+              ProxyPassReverse /
+              Header  unset Cache-Control
+              Header  unset Expires
+              Header  add Cache-Control no-store,no-cache,must-revalidate
+              Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </LocationMatch>
+      # end proxy partner2011 -  mobfilms.ru
+                                                                                     
+
+     # proxy for partner2012- mobfilms.ru
+     ProxyPassMatch ^/2012/(.*hih.ru|.*lya.ru|.*kmx.ru|.*kmx.ua|.*mx.kz|.*kmx.by)/(.*)$   http://$1/$2
+     <LocationMatch "^/2012/(.*hih.ru|.*lya.ru|.*kmx.ru|.*kmx.ua|.*mx.kz|.*kmx.by)/(.*)$" >
+	     ProxyPassReverse /
+	     Header  unset Cache-Control
+             Header  unset Expires
+             Header  add Cache-Control no-store,no-cache,must-revalidate
+             Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+     </LocationMatch>
+
+
+      ProxyPassMatch ^/2013/(.*gruzmob.ru|.*waplove24.ru)/(.*)$   http://$1/$2
+      <LocationMatch ^/2013/(.*gruzmob.ru|.*waplove24.ru)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </LocationMatch>
+
+	#roxy for partner2014 -  qip.ru
+        ProxyPass /2014/   http://m.qip.ru/
+	<Location /2014/>
+	  ProxyPassReverse /
+	  Header  unset Cache-Control
+	  Header  unset Expires
+       	  Header  add Cache-Control no-store,no-cache,must-revalidate
+      	  Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+  	</Location>
+
+   	ProxyPass /2015/  http://88.85.76.26/
+        <Location /2015/>
+          ProxyPassReverse http://88.85.76.26/
+          Header  unset Cache-Control
+          Header  unset Expires
+          Header  add Cache-Control no-store,no-cache,must-revalidate
+          Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+        </Location>
+
+#
+
+     # proxy for partner2016 - wap.adultfon.ru
+     ProxyPassMatch ^/2016/(.*mobmp3.ru|.*smsdialogue.ru)/(.*)$   http://$1/$2
+     <LocationMatch ^/2016/(.*mobmp3.ru|.*smsdialogue.ru)/(.*)$>
+        ProxyPassReverse /
+        Header  unset Cache-Control
+        Header  unset Expires
+        Header  add Cache-Control no-store,no-cache,must-revalidate
+        Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+     </LocationMatch>
+    
+     #-----------------------------------#
+    
+#Ticket# : 221510
+ ProxyPassMatch ^/2018/(.*zu4.ru)/(.*)$   http://$1/$2
+      <LocationMatch ^/2018/(.*zu4.ru)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </LocationMatch>
+
+      ProxyPassMatch ^/2020/(.*mobivideoteka.com)/(.*)$   http://$1/$2
+      <LocationMatch ^/2020/(.*mobivideoteka.com)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </LocationMatch>
+
+      ProxyPassMatch ^/2021/(.*mobstudio.ru)/(.*)$   http://$1/$2
+      <LocationMatch ^/2021/(.*mobstudio.ru)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </LocationMatch>
+
+       ProxyPassMatch ^/2022/(.*playsmart.ru|.*neoza.ru)/(.*)$   http://$1/$2
+       <LocationMatch ^/2022/(.*playsmart.ru|.*neoza.ru)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+       </LocationMatch>
+
+      ProxyPassMatch ^/1988/(.*)/(.*)$   http://$1/$2
+      <LocationMatch ^/1988/(.*)/(.*)$ >
+            ProxyPassReverse /
+            Header  unset Cache-Control
+            Header  unset Expires
+            Header  add Cache-Control no-store,no-cache,must-revalidate
+            Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+      </LocationMatch>
+

@@ -1,0 +1,42 @@
+<device DEVNO="0xfe00" TIME="1328693555" PRI="45" UUID="0b2b495c-581b-4233-b453-c930d8a95298" TYPE="ext3">/dev/mapper/vg-usr</device>
+<device DEVNO="0xfe01" TIME="1328693555" PRI="45" UUID="2a8cb641-3ecf-41c5-aa76-ca5bca9bc51a" TYPE="ext2">/dev/mapper/vg-portage</device>
+<device DEVNO="0xfe02" TIME="1328693555" PRI="45" UUID="b6b75f70-fb28-4dfc-a127-f815d37b6236" TYPE="ext2">/dev/mapper/vg-distfiles</device>
+<device DEVNO="0xfe03" TIME="1328693555" PRI="45" UUID="6c84a472-84b7-4152-8763-0280b4f129b3" TYPE="ext3">/dev/mapper/vg-home</device>
+<device DEVNO="0xfe04" TIME="1328693555" PRI="45" UUID="41633921-33f1-463d-a3f4-ea53fab1c5b1" TYPE="ext3">/dev/mapper/vg-opt</device>
+<device DEVNO="0xfe05" TIME="1328693555" PRI="45" UUID="e362ca61-d734-4ab2-a1dc-06f0cbc4546d" TYPE="ext3">/dev/mapper/vg-var</device>
+<device DEVNO="0xfe06" TIME="1328693555" PRI="45" UUID="35fbcc7f-5359-4868-86c8-fee065bde109" TYPE="ext2">/dev/mapper/vg-vartmp</device>
+<device DEVNO="0xfe07" TIME="1328693555" PRI="45" UUID="85d6cc77-0761-4823-a25c-b2ace152fc61" TYPE="ext2">/dev/mapper/vg-tmp</device>
+<device DEVNO="0x0821" TIME="1328693555" LABEL="BACKUP" UUID="e04dbda6-f1d5-4428-a385-b4d0e099f13b" TYPE="xfs">/dev/sdc1</device>
+<device DEVNO="0x0841" TIME="1328693555" UUID="dc61d39b-d6e1-4ce0-9a7c-81fd1af86095" TYPE="ext2">/dev/sde1</device>
+<device DEVNO="0x0861" TIME="1328693555" UUID="377b5182-3e1e-45cb-908c-aa9a1eee275f" TYPE="reiserfs">/dev/sdg1</device>
+<device DEVNO="0x0871" TIME="1328693555" UUID="377b5182-3e1e-45cb-908c-aa9a1eee275f" TYPE="reiserfs">/dev/sdh1</device>
+<device DEVNO="0x0881" TIME="1328693555" UUID="9c179705-4a3d-43d2-bf73-3d665c612a12" TYPE="reiserfs">/dev/sdi1</device>
+<device DEVNO="0x08f1" TIME="1328693555" UUID="24bd39e4-783d-4d21-b26a-0a2809c791a7" TYPE="ext3">/dev/sdp1</device>
+<device DEVNO="0x4101" TIME="1328693555" UUID="3d163db5-7d0a-4d1d-8968-712815b17106" TYPE="ext3">/dev/sdq1</device>
+<device DEVNO="0x4121" TIME="1328693555" UUID="d7701036-7ea6-4310-9854-2df666ce933e" TYPE="reiserfs">/dev/sds1</device>
+<device DEVNO="0xfe0c" TIME="1328693555" PRI="45" UUID="377b5182-3e1e-45cb-908c-aa9a1eee275f" TYPE="reiserfs">/dev/mapper/dom1</device>
+<device DEVNO="0xfe0b" TIME="1328693555" PRI="45" LABEL="BACKUP" UUID="e04dbda6-f1d5-4428-a385-b4d0e099f13b" TYPE="xfs">/dev/mapper/mpatha1</device>
+<device DEVNO="0xfe13" TIME="1328693555" PRI="45" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/mapper/mpathe1</device>
+<device DEVNO="0xfe16" TIME="1328693555" PRI="45" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/mapper/mpathe2</device>
+<device DEVNO="0xfe10" TIME="1328693555" PRI="45" UUID="d7701036-7ea6-4310-9854-2df666ce933e" TYPE="reiserfs">/dev/mapper/mtsiphone1</device>
+<device DEVNO="0xfe18" TIME="1328693555" PRI="45" UUID="dc61d39b-d6e1-4ce0-9a7c-81fd1af86095" TYPE="ext2">/dev/mapper/mpathc1</device>
+<device DEVNO="0xfe17" TIME="1328693555" PRI="45" UUID="24bd39e4-783d-4d21-b26a-0a2809c791a7" TYPE="ext3">/dev/mapper/urchin1</device>
+<device DEVNO="0xfe08" TIME="1328693555" PRI="45" UUID="b06a92ed-0e75-448d-ad16-b777d4a099f0" TYPE="ext3">/dev/mapper/weplayfiles</device>
+<device DEVNO="0x0811" TIME="1328693557" UUID="2940a4c0-6217-4b80-976b-27ec7caf30fd" TYPE="ext2">/dev/sdb1</device>
+<device DEVNO="0x0812" TIME="1328693557" UUID="d218aa75-5526-4fa4-9cd4-7be2bce828eb" TYPE="swap">/dev/sdb2</device>
+<device DEVNO="0x0813" TIME="1328693557" UUID="655db2ba-b378-4677-a3f3-1a1b861c13b3" TYPE="ext2">/dev/sdb3</device>
+<device DEVNO="0x0814" TIME="1328693557" UUID="dmiH48-YBem-RWYe-YPTU-Lew6-vh38-JIKuLA" TYPE="LVM2_member">/dev/sdb4</device>
+<device DEVNO="0x0831" TIME="1328693555" LABEL="BACKUP" UUID="e04dbda6-f1d5-4428-a385-b4d0e099f13b" TYPE="xfs">/dev/sdd1</device>
+<device DEVNO="0x0851" TIME="1328693555" UUID="dc61d39b-d6e1-4ce0-9a7c-81fd1af86095" TYPE="ext2">/dev/sdf1</device>
+<device DEVNO="0x0891" TIME="1328693555" UUID="9c179705-4a3d-43d2-bf73-3d665c612a12" TYPE="reiserfs">/dev/sdj1</device>
+<device DEVNO="0x08a0" TIME="1328693555" UUID="b06a92ed-0e75-448d-ad16-b777d4a099f0" TYPE="ext3">/dev/sdk</device>
+<device DEVNO="0x08b0" TIME="1328693555" UUID="b06a92ed-0e75-448d-ad16-b777d4a099f0" TYPE="ext3">/dev/sdl</device>
+<device DEVNO="0x08c1" TIME="1328693555" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/sdm1</device>
+<device DEVNO="0x08c2" TIME="1328693555" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/sdm2</device>
+<device DEVNO="0x08d1" TIME="1328693555" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/sdn1</device>
+<device DEVNO="0x08d2" TIME="1328693555" UUID="4cae33fd-e93e-4bc4-92e2-c02ce7dbc913" TYPE="ext2">/dev/sdn2</device>
+<device DEVNO="0x08e1" TIME="1328693555" UUID="24bd39e4-783d-4d21-b26a-0a2809c791a7" TYPE="ext3">/dev/sdo1</device>
+<device DEVNO="0x4111" TIME="1328693555" UUID="3d163db5-7d0a-4d1d-8968-712815b17106" TYPE="ext3">/dev/sdr1</device>
+<device DEVNO="0x4131" TIME="1328693555" UUID="d7701036-7ea6-4310-9854-2df666ce933e" TYPE="reiserfs">/dev/sdt1</device>
+<device DEVNO="0x4141" TIME="1328693555" UUID="7aef8910-933c-40d2-bd7b-416acac2ede4" TYPE="reiserfs">/dev/sdu1</device>
+<device DEVNO="0x4151" TIME="1328693555" UUID="7aef8910-933c-40d2-bd7b-416acac2ede4" TYPE="reiserfs">/dev/sdv1</device>

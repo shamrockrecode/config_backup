@@ -1,0 +1,16 @@
+##############################################################
+# Copyright (c) 2011-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# French translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#   . ids use the form filename.object.messagetype
+
+auth.password.invalid = "Le nom d'utilisateur et le mot de passe ne correspondent pas pour '%1$s'"
+auth.password.valid = "Nom d'utilisateur et mot de passe validés avec succès pour '%1$s'"
+auth.sspi.badid = "Tentative d'authentification en utilisant un ID de demande SSPI non valide ou expiré : %1$u"

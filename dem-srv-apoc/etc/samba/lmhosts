@@ -1,0 +1,6 @@
+# $Header: /var/cvsroot/gentoo-x86/net-fs/samba/files/3.5/lmhosts,v 1.1 2010/03/01 16:19:54 patrick Exp $
+127.0.0.1 localhost
+192.168.2.117 _ldap._tcp.dc._msdcs.int.shamrockmobile.ru
+#ldap
+192.168.2.117 _ldap._tcp.dc._msdcs.int.shamrockmobile.ru
+192.168.2.117 SM

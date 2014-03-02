@@ -1,0 +1,404 @@
+addDefaultCharset UTF-8
+
+Include /etc/apache2/vhosts.d/free.mtsgames.ru.include
+
+#NameVirtualHost 10.1.150.33
+#<VirtualHost 10.1.150.33>
+<VirtualHost *:80>
+    ServerName wap.playmobile.ru
+    ServerAlias m.playbeeline.ru
+    ServerAlias wap.playbeeline.ru
+    ServerAlias playbeeline.ru
+    ServerAlias games.nccmobile.ru
+    ServerAlias wap.games.nccmobile.ru
+    ServerAlias wap.games.smartsfon.ru
+    ServerAlias wap.mts.playmobile.ru
+    ServerAlias mts.playmobile.ru
+    ServerAlias m.playmobile.ru
+    ServerAlias games.smartsfon.ru
+    ServerAlias *.funcenter.ru
+    ServerAlias funcenter.ru
+    ServerAlias wap.lifemobile.com.ua
+    ServerAlias wap.lifemobile.ru
+    ServerAlias wap.lifemobile.kz
+    ServerAlias wap.motogames.ru
+    ServerAlias motogames.ru
+    ServerAlias wap-games.rambler.ru
+    ServerAlias wap.pda.games.rambler.ru
+    ServerAlias pda.games.rambler.ru
+    ServerAlias wap.games.mail.ru
+    ServerAlias games.mail.ru
+    ServerAlias wap.nm.mail.ru
+    ServerAlias wap-games.ro.ru
+    ServerAlias wap2.lifemobile.ru
+    ServerAlias wap.musicmobile.ru
+    ServerAlias javagame.megapult.ru
+    ServerAlias realtone.ru
+    ServerAlias wap.truetone.ru
+    ServerAlias wap.logotones.ru
+    ServerAlias wap.logotone.ru
+    ServerAlias wap.logotons.ru
+#Ticket# : 189799
+    ServerAlias videomail.playmobile.ru
+    ServerAlias wnode.videomail.playmobile.ru
+    ServerAlias wap.video.mail.ru
+    ServerAlias video.mail.ru
+#Ticket 190289
+    ServerAlias disney.playmobile.ru
+    ServerAlias wap.disney.ru
+
+#Ticket# : 191044
+    ServerAlias wap.naked.ru
+    ServerAlias ero.zagruzka.com
+    ServerAlias ero.daem.ru
+
+    ServerAlias wap.dstream.ru
+#Ticket #314599
+    ServerAlias nr.playmobile.ru
+    ServerAlias comedy.playmobile.ru
+    ServerAlias intern.playmobile.ru
+    ServerAlias rp.playmobile.ru
+# Edinaya igrovaya
+    ServerAlias wap.mtsgames.ru
+    ServerAlias mtsgames.ru
+    ServerAlias www.mtsgames.ru
+
+    DocumentRoot /var/www/instances/wap.playmobile.ru
+
+    LogLevel Info
+
+    CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/access_log.%Y-%m-%d 86400 +240" todatabase2
+
+
+    <Directory />
+        AllowOverride   All
+        Allow from all
+    </Directory>
+
+###  ticket 313559
+	ScriptAlias /cgi-bin/ " /var/www/instances/wap.playmobile.ru/cgi-bin/"
+	<Directory " /var/www/instances/wap.playmobile.ru/cgi-bin/">
+        AllowOverride None
+        Options +ExecCGI
+        Order allow,deny
+        Allow from all
+	</Directory>
+#
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          mts.playmobile.ru
+                RewriteCond %{REQUEST_URI}        ^/covers
+                RewriteRule   ^(.+)$  http://covers.playmobile.ru/p3917  [L]
+
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          mts.playmobile.ru
+                RewriteCond %{REQUEST_URI}        ^/$
+                RewriteRule   ^(.+)$  http://mts.playmobile.ru/p7  [L]
+
+
+        </IfModule>
+
+
+	<IfModule mod_rewrite.c>
+        RewriteCond %{HTTP_HOST}         wap.naked.ru
+        RewriteCond %{REQUEST_URI}        ^/naked/partners/.*?
+        RewriteRule   ^/naked/partners/(.+)$  http://wap.playmobile.ru/p$1  [L]
+
+
+	#ticket 190289
+	RewriteEngine   On
+	RewriteCond %{HTTP_HOST}	disney.playmobile.ru|wap.disney.ru
+	RewriteRule   ^(.+)$	http://wap.playmobile.ru/p5/wapgames/disney/ 
+	</IfModule>
+
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          wap.video.mail.ru|videomail.playmobile.ru|wnode.videomail.playmobile.ru|video.mail.ru
+                RewriteCond %{REQUEST_URI}        ^/$
+                RewriteCond %{THE_REQUEST}        !/p3325/wapvideo/.*
+                RewriteCond %{THE_REQUEST}        !/partners/3173/games/.*
+                RewriteRule   ^(.+)$  http://%{HTTP_HOST}/p3325/wapvideo/  [L]
+        </IfModule>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          wap.nm.mail.ru
+                RewriteCond %{REQUEST_URI}        ^/$
+                RewriteCond %{THE_REQUEST}        !/p3171/wapgames/.*
+                RewriteCond %{THE_REQUEST}        !/partners/3173/games/.*
+                RewriteRule   ^(.+)$  http://%{HTTP_HOST}/p3171/wapgames/  [L]
+        </IfModule>
+
+
+
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+	        RewriteCond %{HTTP_HOST}          wap.playmobile.ru
+        	RewriteCond %{REQUEST_URI}        ^/games/free.*$
+	        RewriteRule   ^(.+)$  http://demo.playmobile.ru$1  [L]      
+	</IfModule>
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+        RewriteCond ${ipmap:%{REMOTE_ADDR}} =b
+        RewriteCond %{request_uri} !=/sorry.html
+        RewriteCond %{request_uri} !=/stylesheet.css
+        RewriteRule .* /sorry.html [R,L]
+
+
+        RewriteCond %{HTTP_HOST}                wap.games.nccmobile.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://wap.games.nccmobile.ru/p3/  [L]
+
+
+        RewriteCond %{HTTP_HOST}         games.nccmobile.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://games.nccmobile.ru/p3/  [L]
+
+       RewriteCond %{HTTP_HOST}         wap.games.smartsfon.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://wap.games.smartsfon.ru/p5595/  [L]
+
+
+        RewriteCond %{HTTP_HOST}         games.smartsfon.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://games.smartsfon.ru/p5595/  [L]
+
+#Ticket# : 60697 add by berg@
+        RewriteCond %{HTTP_HOST}         wap.er-event.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://mobiletv.ru/erevent/  [L]
+
+#Ticket# : 316432  add by tinkoff@
+	RewriteCond %{HTTP_HOST}         wap.playmobile.ru
+        RewriteCond %{REQUEST_URI}        ^/sub81.*$
+        RewriteRule   ^(.+)$  http://wap.playmobile.ru/podpiski/sub81/  [L]	
+
+	RewriteCond %{HTTP_HOST}         wap.playmobile.ru
+        RewriteCond %{REQUEST_URI}        ^/sub82.*$
+        RewriteRule   ^(.+)$  http://wap.playmobile.ru/podpiski/sub82/  [L]	
+#end by tinkoff
+        RewriteCond %{HTTP_HOST}         wap.games.mail.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://wap.games.mail.ru/p2/  [L]
+
+        RewriteCond %{HTTP_HOST}         games.rambler.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$  http://%{HTTP_HOST}/p3450/  [L]
+
+
+    </IfModule>
+
+
+#  add by unclead@ ticket 253065 
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          wap.playbeeline.ru|m.playbeeline.ru|playbeeline.ru
+                RewriteCond %{REQUEST_URI}        ^/ups/
+                RewriteRule   ^(.+)$  http://wap.playmobile.ru/  [L]
+        </IfModule>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          wap.naked.ru
+                RewriteCond %{REQUEST_URI}        ^/ups/
+                RewriteRule   ^(.+)$  http://wap.playmobile.ru/  [L]
+        </IfModule>
+
+
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          wap.mts.playmobile.ru
+                RewriteCond %{REQUEST_URI}        ^/covers
+                RewriteRule   ^(.+)$  http://covers.playmobile.ru/p3917  [L]
+        </IfModule>
+
+####Партнёрские подписки add by vkazanov
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        wap.playmobile.ru
+                RewriteCond %{REQUEST_URI}      ^/p(\d+)/sub(\d+).*$
+		RewriteCond %{HTTP_USER_AGENT}	.*(Mac_PowerPC|Macintosh|iPad|Lynx|WinNT|Windows\sNT|Download\sMaster|Linux(?!.*Android.*)).*
+                RewriteRule   ^/p(\d+)/.*$ http://%{HTTP_HOST}/p$1? [L]
+        </IfModule>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}	wap.playmobile.ru
+		RewriteCond %{REQUEST_URI}	^/(p3571)|(p3572)|(p3729)|(p3730)|(p3731)|(p3732)|(p3833)|(p3834)|(p3953)|(p3954)|(p3939)|(p4011)|(p4028)|(p3935)|(p4158)|(p4146)|(p4077)|(p3937)|(p4107)|(p4155)|(p4087)|(p4089)|(p4091)|(p4093)|(p4105)|(p4039)|(p4047)|(p4048)|(p4050)|(p4052)|(p4054)|(p4056)|(p4064)|(p4065)|(p4160)|(p4062)/(.*)$
+		RewriteCond %{QUERY_STRING}        ^action=enter$
+                RewriteRule   ^/(.*)$ http://%{HTTP_HOST}/$1?blocked [L]
+        </IfModule>
+#ticket291209 
+	<IfModule mod_rewrite.c>
+		RewriteEngine   On
+		RewriteCond %{HTTP_HOST}        wap.playmobile.ru
+#		RewriteCond %{REQUEST_URI}	^/p(\d+)/(.*)$
+		RewriteCond %{REQUEST_URI}	^/(.*)$
+#		RewriteCond %{REMOTE_ADDR}      194.0.120.198 [OR]
+		Include /etc/apache2/conf/IP/MTS_by_macroregions/MTS_UG+Centr_gprs_or.conf
+		RewriteCond %{QUERY_STRING}        ^action=enter$
+		RewriteRule   ^/(.*)$ http://%{HTTP_HOST}/$1?blocked [L]
+	</IfModule>
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        wap.playmobile.ru
+ 		RewriteCond %{REQUEST_URI}      ^/(.*)$
+                Include /etc/apache2/conf/IP/MTS_by_macroregions/MTS_UG+Centr_gprs_or.X-Forwarded-For.conf
+                RewriteCond %{QUERY_STRING}        ^action=enter$
+                RewriteRule   ^/(.*)$ http://%{HTTP_HOST}/$1?blocked [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        wap.playmobile.ru
+		RewriteCond %{REQUEST_URI}      ^/(.*)$
+                Include /etc/apache2/conf/IP/MTS_by_macroregions/MTS_UG+Centr_wap_or.conf
+                RewriteCond %{QUERY_STRING}        ^action=enter$
+               RewriteRule   ^/(.*)$ http://%{HTTP_HOST}/$1?blocked [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        wap.playmobile.ru
+                RewriteCond %{REQUEST_URI}      ^/(.*)$
+                Include /etc/apache2/conf/IP/MTS_by_macroregions/MTS_UG+Centr_gprs_or.X-Forwarded-For.conf
+               RewriteCond %{QUERY_STRING}        ^action=enter$
+               RewriteRule   ^/(.*)$ http://%{HTTP_HOST}/$1?blocked [L]
+        </IfModule>
+#by belka 304938
+       <IfModule mod_rewrite.c>
+                RewriteEngine   On
+        RewriteCond %{HTTP_HOST}        wap.mtsgames.ru|mtsgames.ru
+        RewriteCond %{HTTP_USER_AGENT}  .*iPhone.*
+       # RewriteCond %{REQUEST_URI}      ^/$
+        RewriteRule   ^(.+)$  http://mtsiphone.ru
+    </IfModule>
+
+
+#end of ticket291209 (add by vkazanov
+
+#---------
+# 23.01.2008 | CR#: 14484 | vlt@
+	<LocationMatch /freegames[/]?>
+		ProxyPass	http://free.playmobile.ru/freegames/
+		ProxyPassReverse	http://free.playmobile.ru/freegames/
+	</LocationMatch>
+#	<Location /freegames>
+#		ProxyPass	http://free.playmobile.ru/freegames/
+#	        ProxyPassReverse	http://free.playmobile.ru/freegames/
+#	</Location>
+
+#-----171675 @ crash
+	 <LocationMatch /sd[/]?>
+         	 ProxyPass	http://epa.playmobile.ru/sd/
+		 ProxyPassReverse http://epa.playmobile.ru/sd/
+	 </LocationMatch>
+#----------
+        <Location /freemtsgames/>
+                ProxyPass              http://proxy5.wapjava.ru/
+                ProxyPassReverse       http://proxy5.wapjava.ru/
+        </Location>
+
+	<Location /ups/>
+		ProxyPass              http://proxy3.wapjava.ru/
+		ProxyPassReverse       http://proxy3.wapjava.ru/
+	</Location>
+
+	<Location /intern/free/>
+	ProxyPass         http://proxy4.wapjava.ru/free/
+	ProxyPassReverse  http://proxy4.wapjava.ru/free/
+	</Location>
+	<Location /intern/wml/>
+	ProxyPass          http://proxy4.wapjava.ru/wml/
+	ProxyPassReverse   http://proxy4.wapjava.ru/wml/
+	</Location>
+
+        ProxyPassMatch ^/agg/2013/(.*gruzmob.ru)/(.*)$ http://$1/$2
+        <LocationMatch ^/agg/2013/(.*gruzmob.ru)/(.*)$>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+                Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+		Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+		Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_or.conf
+		Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_or.conf
+        </LocationMatch>
+
+        ProxyPassMatch ^/agg/2020/(.*mobivideoteka.com)/(.*)$ http://$1/$2
+        <LocationMatch ^/agg/2020/(.*mobivideoteka.com)/(.*)$>
+                ProxyPassReverse /
+                Header  unset Cache-Control
+                Header  unset Expires
+                Header  add Cache-Control no-store,no-cache,must-revalidate
+                Header  set  Expires "Wed, 28 Oct 2009 06:45:35 GMT"
+                Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_or.conf
+                Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_or.conf
+        </LocationMatch>
+
+#==========add by raven ticket_id [291077]====================
+	ProxyPass /templates/oldmtsgames/	  http://old.mtsgames.ru/oldmtsgames/
+	ProxyPassReverse /templates/oldmtsgames/  http://old.mtsgames.ru/templates/oldmtsgames/
+
+        ProxyPass /images/oldmtsgames/         http://old.mtsgames.ru/templates/images/oldmtsgames/
+        ProxyPassReverse /images/oldmtsgames/  http://old.mtsgames.ru/templates/images/oldmtsgames
+
+
+	ProxyPass /app_createSubscription.php http://old.mtsgames.ru/app_createSubscription.php
+	ProxyPassReverse /app_createSubscription.php http://old.mtsgames.ru/app_createSubscription.php
+
+	ProxyPassMatch ^/(go[0-9]*.*)$ http://old.mtsgames.ru/$1
+	<LocationMatch "^/(go[0-9]*.*)$">
+		ProxyPassReverse /
+	</LocationMatch>
+
+	
+#	ProxyPassMatch ^/vv(go29*)$ http://old.mtsgames.ru/$1
+#        <LocationMatch "^/vv(go29*)$">
+#                ProxyPassReverse /
+#        </LocationMatch>
+	
+	<Location "/ggo29">
+	ProxyPass  http://old.mtsgames.ru/go29/
+	ProxyPassReverse http://old.mtsgames.ru/go29/
+        </Location>
+
+
+        <Location "/ugo29">
+        ProxyPass   http://3gtest.mtsgames.ru/go29/
+        ProxyPassReverse http://3gtest.mtsgames.ru/go29/
+        </Location>
+
+
+	<Location "/sd/">
+        	ProxyPass http://epa.playmobile.ru/sd/
+	        ProxyPassReverse http://epa.playmobile.ru/sd/
+	</Location>
+
+	<Location "/packages">
+                ProxyPass http://old.mtsgames.ru/packages/
+                ProxyPassReverse http://old.mtsgames.ru/packages/
+	</Location>
+
+	<Location "/gamers">
+                ProxyPass http://old.mtsgames.ru/gamers/
+                ProxyPassReverse http://old.mtsgames.ru/gamers/
+	</Location>
+
+	<Location "/discount">
+                ProxyPass http://old.mtsgames.ru/discount/
+                ProxyPassReverse http://old.mtsgames.ru/discount/
+	</Location>
+
+#	<Location "/platinum">
+#                ProxyPass http://old.mtsgames.ru/platinum/
+#                ProxyPassReverse http://old.mtsgames.ru/platinum/
+#	</Location>
+		     
+		     
+</VirtualHost>
+

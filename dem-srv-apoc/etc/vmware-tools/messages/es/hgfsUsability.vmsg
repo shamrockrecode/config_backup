@@ -1,0 +1,16 @@
+##############################################################
+# Copyright (c) 2010-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# Spanish translations for hgfsUsability messages.
+#
+
+sharedfolders.name = "Carpetas compartidas de VMware"
+
+redirect.logout.message =
+   "VMware Tools ha modificado algunos parámetros para permitir compartir "
+   "datos con el host. Estas modificaciones requieren que cierre su sesión "
+   "ahora mismo. Presione Aceptar para cerrar la sesión. Presione"
+
+redirect.logout.title = "VMware Tools"
+

@@ -1,0 +1,1 @@
+postgres_ebuilds="${postgres_ebuilds} postgresql-docs-8.4.4"

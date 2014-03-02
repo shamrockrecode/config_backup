@@ -1,0 +1,120 @@
+Include /etc/apache2/vhosts.d/comedy.mtscity.ru.include
+Include /etc/apache2/vhosts.d/intern.mtsvideo.ru.include
+Include /etc/apache2/vhosts.d/mtsvideo.not_mts.include
+
+<IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          wap.mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/tr900/(.*)/free/.*$
+	      RewriteCond %{REQUEST_URI}        !^/mv/tr900/.*/dl/key\..*$
+              RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+
+
+<IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          wap.mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/tr912/(.*)
+              RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+<IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          wap.mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/trna/(.*)
+              RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+    <IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          ^mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/tr900/(.*)/free/.*$
+              RewriteCond %{REQUEST_URI}        !^/mv/tr900/.*/dl/key\..*$            
+	      RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+<IfModule mod_rewrite.c>
+              RewriteEngine   On
+	      RewriteCond %{HTTP_HOST}          ^mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/tr912/(.*)
+              RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+<IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          ^mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/mv/trna/(.*)
+              RewriteCond %{REQUEST_URI}        !.*addr\..*
+	      RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+              RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+              Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+
+              RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://mtsvideo.ru/$1    [L]
+
+         </IfModule>
+
+
+             <IfModule mod_rewrite.c>
+              RewriteEngine   On
+              RewriteCond %{HTTP_HOST}          mtsvideo.ru|wap.mtsvideo.ru
+              RewriteCond %{REQUEST_URI}        ^/.*/free/.*$
+              Include       /etc/apache2/conf/IP/MTS_wap_not.conf
+              Include       /etc/apache2/conf/IP/MTS_gprs_not.conf
+	      Include       /etc/apache2/conf/IP/MTS_wap_not.X-Forwarded-For.conf
+	      Include       /etc/apache2/conf/IP/MTS_gprs_not.X-Forwarded-For.conf
+              RewriteCond %{REMOTE_ADDR} !194.0.120.198
+	      RewriteRule   ^(.+)$ http://pulse.mts.ru/content/p/dostup [L]
+         </IfModule>
+
+
+
+    ProxyRequests Off
+	
+
+
+#	ProxyPassMatch ^/p(\d+)/sub{\d+}(.*)$	http://subs.playmobile.ru/p$1/sub$2
+
+	ProxyPassMatch	^/p(\d+)/sub(\d+)(.*)$	http://subs.playmobile.ru/p$1/sub$2$3
+        <LocationMatch ^/p(\d+)/sub(\d+)(.*)$>
+		ProxyPassReverse /
+	</LocationMatch>
+
+	ProxyPassMatch  ^/sub(\d+)(.*)$      http://subs.playmobile.ru/sub$1$2
+	<LocationMatch ^/sub(\d+)(.*)$>
+		ProxyPassReverse /
+	</LocationMatch>
+
+
+
+</VirtualHost>

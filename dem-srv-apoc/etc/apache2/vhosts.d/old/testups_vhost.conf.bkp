@@ -1,0 +1,52 @@
+addDefaultCharset UTF-8
+
+#NameVirtualHost 10.1.150.33
+#<VirtualHost 10.1.150.33>
+<VirtualHost *:80>
+    ServerName tintern.playmobile.ru
+    ServerAlias tnasharussia.playmobile.ru
+    ServerAlias tcomedy.playmobile.ru
+#    ServerAlias rbm.playmobile.ru
+
+#    DocumentRoot /home/deploy/preproduction/current/
+	DocumentRoot /var/www/instances/testups.playmobile.ru
+    LogLevel debug
+
+    CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/access_log.%Y-%m-%d 86400 +240" todatabase2
+    CustomLog "|/usr/sbin/rotatelogs /tmp/test_access_log.%Y-%m-%d 86400 +180" test_log
+
+
+
+    <Directory />
+        AllowOverride   All
+        Allow from all
+    </Directory>
+    <Directory "/var/www/instances/testups.playmobile.ru/xcache/">
+	AuthType Basic  
+	AuthName admin
+	require valid-user 
+        AllowOverride   All
+        Allow from all
+	AuthUserFile  "/var/www/instances/testups.playmobile.ru/xcache/.htpasswd"
+    </Directory>
+
+	<Location /ups/>
+	ProxyPass	http://proxy3.wapjava.ru/
+	ProxyPassReverse	http://proxy3.wapjava.ru/
+	</Location>
+
+#ScriptAlias /cgi-bin/ "/var/www/test/ups/cgi-bin/"
+ScriptAlias /cgi-bin/ "/var/www/instances/testups.playmobile.ru/cgi-bin/"
+#<Directory "/var/www/test/ups/cgi-bin">
+<Directory "/var/www/instances/testups.playmobile.ru/cgi-bin/">
+                AllowOverride None
+                Options +ExecCGI
+                Order allow,deny
+                Allow from all
+</Directory>
+
+
+
+
+</VirtualHost>
+

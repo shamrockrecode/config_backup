@@ -1,0 +1,70 @@
+127.0.0.1 apoc.playmobile.ru apoc leeloo.sh-t.ru localhost dem-srv-apoc
+192.168.200.56  dem-srv-nas
+192.168.200.15  quattro.playmobile.ru
+192.168.200.17  leeloo.playmobile.ru leeloo wap.mts.ru ad.playmobile.ru
+192.168.200.3   smsc.shamrock.ru app.playmobile.ru
+192.168.200.31  avatar.playmobile.ru gateconf.playmobile.ru
+#192.168.200.32 db2.shamrock.ru
+#192.168.200.107 pulse.mts.ru
+192.168.200.5  w.wapjava.ru tree.playmobile.ru get.mtscity.ru dl.mobiletv.ru l.wapjava.ru dominic.playmobile.ru proxy.wapjava.ru sms2http.playmobile.ru
+#194.87.32.254  w.wapjava.ru tree.playmobile.ru get.mtscity.ru dl.mobiletv.ru l.wapjava.ru dominic.playmobile.ru proxy.wapjava.ru sms2http.playmobile.ru
+192.168.200.62	mysql.database.host mydb dem-srv-mysql-common
+192.168.200.29	dem-srv-mysql-cmoh
+192.168.200.39	dem-srv-mysql-ups
+192.168.200.44	dem-srv-mysql-mcinema
+192.168.200.45	dem-srv-mysql-mtsgames
+192.168.200.55  dem-srv-mysql-subs
+192.168.200.63 dem-srv-mysql-vstream
+192.168.200.29 dem-srv-mysql-cmoh
+192.168.200.57 dem-srv-mysql-pulse
+192.168.200.82 dem-srv-mysql-wurfl
+192.168.200.51 dem-srv-mysql-mtscity
+192.168.200.59 dem-srv-mysql-omlet
+192.168.200.179 dem-srv-mail
+192.168.200.99 dem-srv-web-subs
+192.168.200.34 dem-srv-web-apache
+192.168.200.78 dem-srv-psql
+192.168.200.94 dem-srv-psql-ordb
+10.1.150.173 testsubs.playmobile.ru testsubs.mtsgames.ru testomletsubs.playmobile.ru testsubs.mtsvideo.ru
+10.1.150.173 subs.playmobile.ru subs.mtsgames.ru omletsubs.playmobile.ru club.playmobile.ru
+
+#192.168.201.101   subscriber.playmobile.ru
+192.168.200.100   subscriber.playmobile.ru
+192.168.200.7   db.shamrock.ru postgres.database.host
+10.1.150.6      quattro-ext.playmobile.ru quattro-ext quattro.playmobile.ru
+192.168.200.15          comedy.mtscity.ru free.playmobile.ru comedy.mtsvideo.ru quattro.sh-t.ru
+10.1.150.7              wap.fonster.ru wap.mtscity.ru www.mtscity.ru mtscity.ru wap.mtscity2.playmobile.ru
+192.168.200.11          odin odin.playmobile.ru
+#195.133.54.3            wap.mtsgames.ru
+192.168.200.51          megafongames.mysql.database.host
+192.168.200.7           postgres.database.host
+192.168.200.71          test.quattro.sh-t.ru
+
+192.168.200.100         db.datafort.shamrock.ru db3.shamrock.ru
+192.168.200.37         db2.shamrock.ru pgpool.shamrock.ru
+192.168.200.31		rutube_solr.playmobile.ru
+
+192.168.200.33          rutubetmp.mtsvideo.ru stas.playmobile.ru
+192.168.200.15          bit.playmobile.ru
+
+192.168.200.33		wap.poisk.mts.ru
+
+192.168.200.5 partner.dstream.ru
+
+192.168.200.162 weplay.playmobile.ru
+
+
+#ldap
+192.168.200.200 sm-srv-dc3.int.shamrockgames.ru sm-srv-dc3
+192.168.200.200 _ldap._tcp.pdc._msdcs.SHAMROCK
+192.168.200.200 _ldap._tcp.dc._msdcs.int.shamrockmobile.ru
+192.168.200.200 _kerberos._tcp.dc._msdcs.int.shamrockmobile.ru
+
+192.168.200.31          javacovers.playmobile.ru
+192.168.200.33          covers.playmobile.ru
+
+## TT500679 by passv ##
+192.168.200.29  dem-srv-mysql-cmoh
+192.168.200.20  dem-srv-mysql-ups_sec
+192.168.200.39  dem-srv-mysql-ups
+192.168.200.44	dem-srv-mysql-mcinema

@@ -1,0 +1,305 @@
+<VirtualHost *:80>
+    ServerName  free.mtsgames.ru
+    DocumentRoot /home/deploy/secondary/current
+
+   <Directory />
+        Options Indexes FollowSymLinks
+        AllowOverride   All
+        Allow from all
+    </Directory>
+
+        <IfModule mod_rewrite.c>
+           RewriteEngine   On
+          RewriteCond %{HTTP_HOST}          free.mtsgames.ru
+         RewriteCond %{REQUEST_URI}        ^/$
+
+           RewriteRule   ^(.+)$     http://free.mtsgames.ru/5000games/    [L]
+
+       </IfModule>
+
+###  ticket 313559
+        ScriptAlias /cgi-bin/ "/home/deploy/secondary/current/cgi-bin/"
+        <Directory "/home/deploy/secondary/current/cgi-bin/">
+        AllowOverride None
+        Options +ExecCGI
+        Order allow,deny
+        Allow from all
+        </Directory>
+#
+
+#add by unclead@
+     <IfModule mod_rewrite.c>
+        RewriteEngine   On
+        RewriteCond %{HTTP_HOST}        free.mtsgames.ru
+        RewriteCond %{REQUEST_URI}      ^.*$
+#        RewriteCond %{HTTP_USER_AGENT}  .*MTC.733 [OR]
+# use opera-mini headers
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*MTS.840.*     [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*Vodafone547.* [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*(MTS|MTC).*547.* [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*MTS540.*      [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*Black.erry9800.*   [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*Black.erry9300.*   [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*(Buzz|Wildfire_A3333).*   [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*(MTS|MTC).918.*     [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*(MTS|MTC).916.*     [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*Vodafone.945.*     [OR]
+# use default headers
+        RewriteCond %{HTTP_USER_AGENT}  .*(MTS|MTC).918.*     [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*MTS.840.*     [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*Vodafone547.* [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*(MTS|MTC).*547.* [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*Black.erry9800.* [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*Black.erry9300.* [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*(Buzz|Wildfire_A3333).*     [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*MTS540.*  [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*Vodafone.945.*  [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*(MTS|MTC).916.*
+        RewriteRule   ^(.+)$  http://pulse.mts.ru/content/category/games/  [L]
+     </IfModule>
+
+
+
+#added by dimon 2008-12-15 from Ticket# : 10278
+<IfModule mod_rewrite.c>
+        RewriteEngine   On
+                RewriteCond %{REQUEST_URI}        ^/mtscity/?$
+                RewriteRule   ^(.+)$ http://free.mtsgames.ru/5000games/games/mts-siti/22016/  [L]
+      
+      
+      RewriteCond %{HTTP_HOST}          free.mtsgames.ru
+      RewriteCond %{REQUEST_URI}        ^/freegames/?$
+      RewriteRule   ^(.+)$  http://free.playmobile.ru/  [L]
+
+
+#      RewriteCond %{HTTP_HOST}          free.mtsgames.ru
+#      RewriteCond %{REQUEST_URI}        ^/1ap/?$
+#      RewriteRule   ^(.+)$  http://free.mtsgames.ru/5000games/games/1ap/  [L]
+
+        ####add by vkazanov 146297
+        <IfModule mod_rewrite.c>
+        RewriteEngine   On
+        RewriteCond %{HTTP_USER_AGENT}  .*Vodafone.*543.*    [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*MTS.*540.*
+        RewriteRule     ^(.+)$  http://wap.mts.ru/browseonly  [L]
+        </IfModule>
+
+        <IfModule mod_rewrite.c>
+            RewriteEngine   On
+            RewriteCond %{HTTP_HOST}          free.mtsgames.ru
+            RewriteCond %{REQUEST_URI}        ^/free/(.*)
+            RewriteCond %{REQUEST_URI}        !.*addr\..*
+            RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+            RewriteCond %{REQUEST_URI}        !.*/5000games/.*
+            RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+            Include /etc/apache2/conf/IP/MTS_wap_or.conf
+            RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://free.mtsgames.ru/$1    [L]
+        </IfModule>
+
+
+
+
+</IfModule>
+
+
+      <IfModule mod_rewrite.c>
+          RewriteEngine   On
+          RewriteCond %{HTTP_HOST}          free.mtsgames.ru
+	  RewriteCond %{HTTP_USER_AGENT}  .*(iPhone|iPod).*
+	  RewriteRule     ^(.+)$  http://pulse.mts.ru/content/category/games [L]
+      </IfModule>	
+
+
+<IfModule mod_rewrite.c>
+        RewriteEngine   On
+                RewriteCond %{REQUEST_URI}        ^/5000_games/dl/.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                Include /etc/apache2/conf/IP/Opera_mini_Proxy_gprs_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+                RewriteRule   ^(.+)$ http://wap.mts.ru/wapmtsonly  [L]
+
+
+#               RewriteCond %{REQUEST_URI}        ^/free/dl/.*$
+#change by dimon@ for ticket #13681
+                RewriteCond %{REQUEST_URI}        ^/free/.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+                Include /etc/apache2/conf/IP/Opera_mini_Proxy_gprs_not.conf
+                RewriteRule   ^(.+)$ http://wap.mts.ru/wapmtsonly  [L]
+
+    </IfModule>
+
+   # ProxyPass /5000games/  http://wap.playmobile.ru/p1063/
+   # ProxyPassReverse /5000games/ http://wap.playmobile.ru/p1063/
+
+#####----------------------Ticket# : 303242
+   #        ProxyPass /ugs-preview/ http://mtsgames.ru/images/
+   #       ProxyPassReverse /ugs-preview/ http://mtsgames.ru/images/
+
+            ProxyPass /ugs-templates/ http://mtsgames.ru/templates/mtsgames/
+            ProxyPassReverse /ugs-templates/ http://mtsgames.ru/templates/mtsgames/
+
+	<Location "/mtsbonus/">
+        ProxyPass          http://proxy15.wapjava.ru/
+        ProxyPassReverse    http://proxy15.wapjava.ru/
+        </Location>
+
+#Ticket 385052
+	<Location "/subs/">
+	        ProxyPass          http://proxy15.wapjava.ru/
+	        ProxyPassReverse    http://proxy15.wapjava.ru/
+        </Location>
+#end
+
+#####----------------------Ticket# : 202384
+
+
+    ProxyPass /ugcomletvideo/free/ http://proxy4.wapjava.ru/free/
+    ProxyPassReverse /ugcomletvideo/free/ http://proxy4.wapjava.ru/free/
+
+    ProxyPass /ugcomletvideo/wml/ http://proxy4.wapjava.ru/wml/
+    ProxyPassReverse /ugcomletvideo/wml/ http://proxy4.wapjava.ru/wml/
+
+
+        ProxyPass /omlet/        http://proxy2.wapjava.ru/
+        ProxyPassReverse /omlet/ http://proxy2.wapjava.ru/
+
+        ProxyPass /free/dl/ http://dominic.playmobile.ru:9233/
+        ProxyPassReverse /free/dl/ http://dominic.playmobile.ru:9233/
+
+
+        ProxyPass /free/ http://l.wapjava.ru/free/
+        ProxyPassReverse /free/ http://l.wapjava.ru/free/
+
+
+# proxy for case whith undefined phone model
+        ProxyPass /wml/ http://dominic.playmobile.ru/wml/
+        ProxyPassReverse /wml/ http://dominic.playmobile.ru/wml/
+
+
+#Download 5000Games
+        ProxyPass /5000_games/ http://l.wapjava.ru/
+        ProxyPassReverse /5000_games/ http://l.wapjava.ru/
+
+#nivisim ticket 374858
+#	ProxyPassMatch ^/ups-previews/p([0-9]+)/(.*)$  http://freehentai.playmobile.ru/p$1/images/$2
+	ProxyPassMatch ^/ups-previews/p([0-9]+)/(.*)$  http://freehentai.playmobile.ru/images/$2
+        <LocationMatch "^/ups-previews/p([0-9]+)/(.*)$">
+            ProxyPassReverse /
+        </LocationMatch>
+	ProxyPassMatch ^/ups-previews/q([0-9]+)/(.*)$  http://freehentai.playmobile.ru/p$1/images/$2
+	<LocationMatch "^/ups-previews/q([0-9]+)/(.*)$">
+            ProxyPassReverse /
+        </LocationMatch>
+	ProxyPassMatch ^/ups-previews/(.*)$  http://freehentai.playmobile.ru/images/$1
+        <LocationMatch "^/ups-previews/(.*)$">
+            ProxyPassReverse /
+        </LocationMatch>	
+
+#ProxyPass /ups-previews/ http://freehentai.playmobile.ru/
+#ProxyPassReverse /ups-previews/ http://freehentai.playmobile.ru/
+
+#ticket 286796
+        ProxyPass /mtspreview/ http://wap.poisk.mts.ru/images/
+	ProxyPassReverse /mtspreview/ http://wap.poisk.mts.ru/images/	
+#ticket 374542 @ Tinkoff________________________________________________
+#	ProxyPass /5000games/ http://5000games.playmobile.ru
+#	ProxyPassReverse /5000games/ http://5000games.playmobile.ru
+#_______________________________________________________________________
+	ProxyPassMatch ^/mtsstyle/style(.*).css$ http://wap.mts.ru/style$1.css
+	<LocationMatch ^/mtsstyle/style(.*).css$ >
+	    ProxyPassReverse /
+	</LocationMatch>
+#ticket 318590 by tinkoff
+	ProxyPassMatch ^/ups-preview/p([0-9]+)/(.*)$  http://wap.playmobile.ru/p$1/previews/$2
+        <LocationMatch "^/ups-preview/p([0-9]+)/(.*)$">
+	    ProxyPassReverse /
+	</LocationMatch>
+
+ 	ProxyPassMatch ^/ups-preview/(.*)$  http://wap.playmobile.ru/previews/$1
+        <LocationMatch "^/ups-preview/(.*)$">
+	    ProxyPassReverse /
+	</LocationMatch>
+	
+#ticketet 391780 by nivisim
+#       ProxyPassMatch ^/ugs-preview/p([0-9]+)/(.*)$  http://wap.mtsgames.ru/p$1/images/$2
+#	<LocationMatch "^/ugs-preview/p([0-9]+)/(.*)$">
+#		            ProxyPassReverse /
+#	</LocationMatch>
+#	
+#	ProxyPassMatch ^/ugs-preview/(.*)$  http://wap.mtsgames.ru/images/$1
+#	<LocationMatch "^/ugs-preview/(.*)$">
+#	 ProxyPassReverse /
+#        </LocationMatch>
+#ticket 391780
+         ProxyPassMatch ^/ugs-preview/p([0-9]+)/(.*)$  http://wap.mtsgames.ru/p$1/images/$2
+         <LocationMatch "^/ugs-preview/p([0-9]+)/(.*)$">
+          ProxyPassReverse /
+          </LocationMatch>
+
+        ProxyPassMatch ^/ugs-preview/(.*)$  http://wap.mtsgames.ru/images/$1
+        <LocationMatch "^/ugs-preview/(.*)$">
+         ProxyPassReverse /
+        </LocationMatch>
+
+####TT399350
+       ProxyPassMatch ^/ups-preview1/p([0-9]+)/(.*)$  http://subs.playmobile.ru/p$1/images/$2
+        <LocationMatch "^/ups-preview1/p([0-9]+)/(.*)$">
+            ProxyPassReverse /
+        </LocationMatch>
+
+        ProxyPassMatch ^/ups-preview1/(.*)$  http://subs.playmobile.ru/images/$1
+        <LocationMatch "^/ups-preview1/(.*)$">
+            ProxyPassReverse /
+	 </LocationMatch>
+##end TT399350
+				    
+
+
+#Dlia otgryzki css & images stranici pokypki v Dominic
+        ProxyPass /css/ http://dominic.playmobile.ru/css/
+        ProxyPassReverse /css/ http://dominic.playmobile.ru/css/
+
+        <Location /free/>
+            RequestHeader set UT_REDIRECT_URL http://free.mtsgames.ru/
+        </Location>
+
+        <Location /free/dl/>
+        RequestHeader set UT_REDIRECT_URL http://free.mtsgames.ru/free/dl/
+        </Location>
+
+
+
+	ProxyPassMatch ^/mtsgz-preview/(.*)$ http://old.mtsgames.ru/images/$1
+	<LocationMatch "^/mtsgz-preview/(.*)$">
+		ProxyPassReverse /
+	</LocationMatch>
+
+
+        ProxyPassMatch ^/mtsgz-templates/(.*)$ http://old.mtsgames.ru/templates/$1
+        <LocationMatch "^/mtsgz-templates/(.*)$">
+                ProxyPassReverse /
+        </LocationMatch>
+
+#ticket302872
+        <Location "/ugs/css/">
+                ProxyPass http://tr912.dominic.playmobile.ru/css/
+                ProxyPassReverse http://tr912.dominic.playmobile.ru/css/
+        </Location>
+        <Location "/ugs/wml/">
+                ProxyPass http://tr912.dominic.playmobile.ru/wml/
+                ProxyPassReverse http://tr912.dominic.playmobile.ru/wml/
+        </Location>
+        <Location "/ugs/">
+                ProxyPass http://tr912.dominic.playmobile.ru/
+                ProxyPassReverse http://tr912.dominic.playmobile.ru/
+        </Location>
+#ticket460878
+        <Location "/ups/">
+                ProxyPass http://proxy12.wapjava.ru/
+                ProxyPassReverse http://proxy12.wapjava.ru/
+        </Location>
+#end ticket460878
+</VirtualHost>

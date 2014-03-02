@@ -1,0 +1,26 @@
+##############################################################
+# Copyright (c) 2010-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# Simplified Chinese translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#
+
+pmtimer.warning.caption = "操作系统配置错误"
+
+pmtimer.warning.text =
+   "VMware Tools 服务已检测到此虚拟机的操作系统"
+   "配置出错。Boot.ini 文件指定 |22/usepmtimer|22 boot "
+   "参数。在某些工作负载下，此参数会严重降低"
+   "虚拟机性能。\n"
+   "\n"
+   "从 Boot.ini 文件中移除 |22usepmtimer|22 参数，然后重新启动"
+   "虚拟机以提高虚拟机性能。\n"
+   "\n"
+   "有关其他详细信息，请参见 VMware 知识库 (KB) 文章 1011714。"
+

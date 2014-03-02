@@ -1,0 +1,124 @@
+<VirtualHost *:80>
+
+    ServerName intern.mtsvideo.ru
+ #   DocumentRoot /var/www/from_quattro/sites/intern.mtsvideo.ru_1202
+ DocumentRoot /var/www/instances/fake_instance
+  #  <Directory /var/www/from_quattro/sites/intern.mtsvideo.ru_1202>
+    <Directory />
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+#add by vkazanov ticket140579
+#        <IfModule mod_rewrite.c>
+#        RewriteEngine   On
+#       RewriteCond %{HTTP_HOST}        intern.mtsvideo.ru
+#        RewriteCond %{REQUEST_URI}      ^/$
+#        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*ZTE.*R230.*     [OR]
+#        RewriteCond %{HTTP_USER_AGENT}  .*MTS.*535.*     [OR]
+#        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*MTS.*535.*     [OR]
+#        RewriteCond %{HTTP_USER_AGENT}  .*ZTE.*R230.*
+#        RewriteRule   ^(.+)$  http://wap.mts.ru/  [L]
+#        </IfModule>
+										
+#add by Tinkoff #371378
+<IfModule mod_rewrite.c>
+        RewriteEngine   On
+       RewriteCond %{HTTP_HOST}        intern.mtsvideo.ru
+        RewriteCond %{REQUEST_URI}      ^/$
+#        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*ZTE.*R230.*     [OR]
+#        RewriteCond %{HTTP_USER_AGENT}  .*MTS.*535.*     [OR]
+#        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*MTS.*535.*     [OR]
+#        RewriteCond %{HTTP_USER_AGENT}  .*ZTE.*R230.*
+        RewriteRule   ^(.+)$  http://pulse.mts.ru/content/p/vi1   [L]
+        </IfModule>
+
+####add by vkazanov 146297
+	<IfModule mod_rewrite.c>
+	RewriteEngine   On
+	RewriteCond %{HTTP_USER_AGENT}  .*Vodafone.*543.*
+#	RewriteCond %{HTTP_USER_AGENT}  .*MTS.*540.* 
+	RewriteRule     ^(.+)$  http://wap.mts.ru/browseonly  [L]
+	</IfModule>
+
+#created by BETEP for Ticket# : 136844
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        intern.mtsvideo.ru
+                RewriteCond %{HTTP_USER_AGENT}  .*(iPhone|iPod).*
+		RewriteCond %{HTTP:3g-content}  !yes
+		RewriteRule     ^(.+)$  http://mtsiphone.ru  [L]
+	</IfModule>
+#add by akazarin 171211
+
+#        <IfModule mod_rewrite.c>
+#         RewriteEngine   On
+#         RewriteCond %{HTTP_USER_AGENT}  .*MTS.*840.*
+#         RewriteRule     ^(.+)$  http://mtsvideo.ru  [L]
+#        </IfModule>
+#end add by akazarin
+#add by Tinkoff 321203
+ <IfModule mod_rewrite.c>
+                RewriteEngine   On
+       RewriteCond %{HTTP_HOST}        intern.mtsvideo.ru
+       RewriteCond %{REQUEST_URI}      ^/$
+       #RewriteCond %{HTTP:3g-content}  !yes
+       RewriteRule   ^(.+)$  http://pulse.mts.ru/content/p/intern
+    </IfModule>
+ 
+
+    <IfModule mod_rewrite.c>
+            RewriteEngine   On
+            RewriteCond %{HTTP_HOST}          intern.mtsvideo.ru
+            RewriteCond %{REQUEST_URI}        ^/intern/free/(.*)
+            RewriteCond %{REQUEST_URI}        !.*addr\..*
+	    RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+            RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+            Include /etc/apache2/conf/IP/MTS_wap_or.conf
+            RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://intern.mtsvideo.ru$1    [L]
+    </IfModule>
+
+    <IfModule mod_rewrite.c>
+            RewriteEngine   On
+            RewriteCond %{HTTP_HOST}        intern.mtsvideo.ru
+            RewriteCond %{HTTP_USER_AGENT}  .*(HTC.*Buzz|LG-T300).*
+            RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/tags/interni/  [L]
+    </IfModule>
+
+
+    <IfModule mod_rewrite.c>
+            RewriteEngine   On
+            RewriteCond %{HTTP_HOST}          intern.mtsvideo.ru
+            RewriteCond %{REQUEST_URI}        ^/21/$
+            RewriteRule   ^(.+)$  http://intern.mtsvideo.ru/partners/15835/  [L]
+    </IfModule>
+
+ <IfModule mod_rewrite.c>
+ RewriteEngine   On
+ RewriteCond %{HTTP_HOST}          intern.mtsvideo.ru
+ RewriteCond %{REQUEST_URI}        ^/30/$
+ RewriteRule   ^(.+)$  http://intern.mtsvideo.ru/partners/15836/  [L]
+ </IfModule>
+
+ <IfModule mod_rewrite.c>
+ RewriteEngine   On
+ RewriteCond %{HTTP_HOST}          intern.mtsvideo.ru
+ RewriteCond %{REQUEST_URI}        ^/12$
+ RewriteRule   ^(.+)$  http://intern.mtsvideo.ru/partners/15833/  [L]
+ </IfModule>
+    ProxyPass /uni/ http://l.wapjava.ru/
+    ProxyPassReverse /uni/ http://l.wapjava.ru/
+    ProxyPass /intern/ http://proxy2.wapjava.ru/
+    ProxyPassReverse /intern/ http://proxy2.wapjava.ru/
+    ProxyPass /intern/wml/ http://proxy2.wapjava.ru/wml/
+    ProxyPassReverse /intern/wml/ http://proxy2.wapjava.ru/wml/
+    ProxyPass /intern/css/ http://proxy2.wapjava.ru/css/
+    ProxyPassReverse /intern/css/ http://proxy2.wapjava.ru/css/
+</VirtualHost>

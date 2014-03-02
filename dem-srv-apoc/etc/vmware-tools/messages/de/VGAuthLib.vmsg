@@ -1,0 +1,16 @@
+##############################################################
+# Copyright (c) 2011-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# German translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#   . ids use the form filename.object.messagetype
+
+auth.password.invalid = "Keine Übereinstimmung bei Benutzername und Kennwort für '%1$s'"
+auth.password.valid = "Benutzername und Kennwort erfolgreich validiert für '%1$s'"
+auth.sspi.badid = "Versuch der Authentifizierung mit einer ungültigen oder abgelaufenen SSPI-Challenge-ID: %1$u"

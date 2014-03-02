@@ -1,0 +1,7 @@
+#>media-gfx/imagemagick-6.7.1.0
+>media-video/ffmpeg-0.5_p20373
+>dev-lang/php-5.3.15
+>sys-kernel/gentoo-sources-3.6.11
+>sys-devel/gcc-4.5.3-r2
+#>=www-servers/nginx-1.2.6-r1
+#>dev-php/xcache-2.0.1

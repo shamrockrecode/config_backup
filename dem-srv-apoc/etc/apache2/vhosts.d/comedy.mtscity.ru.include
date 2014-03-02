@@ -1,0 +1,281 @@
+<VirtualHost *:80>
+    ServerName comedy.mtscity.ru
+    ServerAlias comedy.mtscity.ru
+    ServerAlias comedy1.mtsgames.ru
+    ServerAlias comedy.v-club.kz
+    ServerAlias comedy.vclub.kz
+
+    #DocumentRoot /var/www/from_quattro/sites/comedy.mtsvideo.ru
+    DocumentRoot /var/www/instances/fake_instance
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/comedy.mtsvideo.ru/error_log.%Y-%m-%d 86400 +180"
+
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+
+        ProxyRequests Off
+        <Proxy *>
+                Order deny,allow
+                Allow from all
+        </Proxy>
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+        RewriteCond %{HTTP_HOST}         comedy.v-club.kz
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$             http://comedy.vclub.kz  [L]
+</IfModule>
+#add by Tinkoff #371378
+<IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+        RewriteCond %{HTTP_HOST}         comedy.mtscity.ru
+        RewriteCond %{REQUEST_URI}        ^/$
+        RewriteRule   ^(.+)$             http://pulse.mts.ru/content/p/vi1  [L]
+</IfModule>
+#add by akazarin 171211
+        <IfModule mod_rewrite.c>
+         RewriteEngine   On
+         RewriteCond %{HTTP_USER_AGENT}  .*MTS.*840.*
+         RewriteRule     ^(.+)$  http://mtsvideo.ru  [L]
+        </IfModule>
+#end add by akazarin
+
+	####add by vkazanov 146297
+	<IfModule mod_rewrite.c>
+	RewriteEngine   On
+	RewriteCond %{HTTP_USER_AGENT}  .*Vodafone.*543.*    [OR]
+	RewriteCond %{HTTP_USER_AGENT}  .*MTS.*540.* 
+	RewriteRule     ^(.+)$  http://wap.mts.ru/browseonly  [L]
+	</IfModule>
+
+#add by Tinkoff 244978
+    <IfModule mod_rewrite.c>
+                RewriteEngine   On
+       RewriteCond %{HTTP_HOST}        comedy.mtscity.ru
+       RewriteCond %{REQUEST_URI}      ^/$
+       RewriteCond %{HTTP:3g-content}  !yes
+       RewriteCond %{HTTP_USER_AGENT}  !.*zabbix.*agent.*
+        RewriteRule   ^(.+)$  http://pulse.mts.ru/content/p/cc
+    </IfModule>
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+                RewriteCond %{REQUEST_URI}      /content.php
+		RewriteRule ^/content.php(.*)$   http://%{HTTP_HOST}/leeloo/content.php$1 [L]
+
+    </IfModule>
+
+#3
+        ProxyPass /leeloo/ http://wap.mtscity.ru/
+        ProxyPassReverse /leeloo/ http://wap.mtscity.ru/
+
+#4 b
+        ProxyPass /leeloo/files/ http://wap.mtscity.ru/files/
+        ProxyPassReverse /leeloo/files/ http://wap.mtscity.ru/files/
+
+        ProxyPass /leeloo/filesussd/ http://wap.mtscity.ru/filesussd/
+        ProxyPassReverse /leeloo/filesussd/ http://wap.mtscity.ru/filesussd/
+
+        ProxyPass /leeloo/files_comedy/ http://wap.mtscity.ru/files_comedy/
+        ProxyPassReverse /leeloo/files_comedy/ http://wap.mtscity.ru/files_comedy/
+
+#5
+        ProxyPass /files/ http://wap.mtscity.ru/files/
+        ProxyPassReverse /files/ http://wap.mtscity.ru/files/
+
+        ProxyPass /filesussd/ http://wap.mtscity.ru/filesussd/
+        ProxyPassReverse /filesussd/ http://wap.mtscity.ru/filesussd/
+
+        ProxyPass /files_comedy/ http://wap.mtscity.ru/files_comedy/
+        ProxyPassReverse /files_comedy/ http://wap.mtscity.ru/files_comedy/
+
+
+# by berg@ 28.02.2008 -  blok partner URL for non wap-MTS users. redirect to wap.mts.ru/mtsonly Ticket #: 147590
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+
+                RewriteCond %{REQUEST_URI}        ^/partners/59/?.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                RewriteRule   ^(.+)$ http://wap.mts.ru/mtsonly  [L]
+        </IfModule>
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+        RewriteCond %{REQUEST_URI}        ^/w/.*$
+        RewriteRule   ^(.*)$  http://w.wapjava.ru$1  [P]
+
+        RewriteCond %{REQUEST_URI}        ^/load/.*$
+        RewriteRule   ^(.*)$  http://w.wapjava.ru$1  [P]
+
+        RewriteCond %{HTTP_HOST}                .*mtscity.ru
+        RewriteCond %{HTTP_HOST}                !comedy.mtscity.ru
+        RewriteCond     %{REMOTE_ADDR}  80.255.64.41 [OR]
+        RewriteCond     %{REMOTE_ADDR}  80.255.64.42 [OR]
+        RewriteCond     %{REMOTE_ADDR}  80.255.64.43 [OR]
+	# new IP of UMC // vlt@
+        RewriteCond     %{REMOTE_ADDR}  80.255.73.50 [OR]
+        #add by unclead ticket 196764 
+        RewriteCond     %{REMOTE_ADDR}  80.255.64.45 [OR]
+	#vlt home. 4 test
+        #RewriteCond     %{REMOTE_ADDR}  80.64.91.1 [OR]
+        RewriteCond     %{REMOTE_ADDR}  80.255.64.44
+        RewriteRule   ^(.+)$  http://wap.city.mts.com.ua$1  [L]
+
+
+        RewriteCond %{HTTP_HOST}                comedy.mtscity.ru
+        RewriteCond %{REQUEST_URI}        ^/files_comedy/.*|^/files/.*|^/filesussd/.*|^/nr/.*
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+        RewriteRule   ^(.+)$ http://wap.mts.ru/wapmtsonly  [L]
+
+
+       RewriteCond %{HTTP_HOST}                wap.mtscity.ru
+       RewriteCond     %{HTTP:x-msisdn}  ![0-9]+
+       RewriteCond     %{HTTP:msisdn}  ![0-9]+
+       RewriteCond     %{HTTP:x-nokia-msisdn}  ![0-9]+
+       RewriteCond     %{HTTP:ix-fh-msisdn}  ![0-9]+
+       RewriteCond     %{REMOTE_ADDR}  212.26.141.66 [OR]
+       RewriteCond     %{REMOTE_ADDR}  193.193.194.143 [OR]
+       RewriteCond     %{REMOTE_ADDR}  193.193.194.184
+       RewriteRule   ^(.+)$  http://wap.mts.com.ua/ru/denied?from=/9/9134 [L]
+
+#Only WAP MTS users
+                RewriteCond %{HTTP_HOST}    comedy.mtscity.ru
+                RewriteCond %{REQUEST_URI}        ^/dmnc.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+		Include /etc/apache2/conf/IP/MTS_wap_not.X-Forwarded-For.conf
+		RewriteRule   ^(.+)$  http://wap.mts.ru/wapmtsonly  [L]
+    </IfModule>
+
+
+
+#---from leeloo:
+        ProxyPass /free/ http://w.wapjava.ru/free/
+        ProxyPassReverse /free/ http://w.wapjava.ru/free/
+
+        ProxyPass /dmnc/ http://l.wapjava.ru/
+        ProxyPassReverse /dmnc/ http://l.wapjava.ru/
+
+# proxy for case whith undefined phone model
+        ProxyPass /dmnc/wml/ http://l.wapjava.ru/wml/
+        ProxyPassReverse /dmnc/wml/ http://l.wapjava.ru/wml/
+
+
+#Dlia otgryzki css & images stranici pokypki v Dominic
+        ProxyPass /dmnc/css/ http://l.wapjava.ru/css/
+        ProxyPassReverse /dmnc/css/ http://l.wapjava.ru/css/
+
+        ProxyPass /dmnc/images/ http://l.wapjava.ru/images/
+        ProxyPassReverse /dmnc/images/ http://l.wapjava.ru/images/
+
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+                RewriteCond %{REQUEST_URI}        ^/partners/5709.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                RewriteRule   ^(.+)$ http://sexpod.ru/?p=4  [L]
+        </IfModule>
+
+    <IfModule mod_rewrite.c>
+           RewriteEngine   On
+           RewriteCond %{HTTP_HOST}          comedy.mtscity.ru
+           RewriteCond %{REQUEST_URI}        ^/dmnc/free/(.*)
+           RewriteCond %{REQUEST_URI}        !.*addr\..*
+	   RewriteCond %{REQUEST_URI}        !.*\.jsp.*$
+           RewriteCond %{REMOTE_ADDR}        194.0.120.198 [OR]
+           Include /etc/apache2/conf/IP/MTS_wap_or.conf
+           RewriteRule   ^(.+)$     http://wap.mtsvideo.ru/msisdn/domi_detect.php?backurl=http://comedy.mtscity.ru/$1    [L]
+    </IfModule>
+
+    <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}          comedy.mtscity.ru
+	       RewriteCond %{REQUEST_URI}        ^/19/?$
+               RewriteRule   ^(.+)$  http://comedy.mtscity.ru/partners/15827/     [L]
+	       RewriteCond %{HTTP_HOST}          comedy.mtscity.ru
+	       RewriteCond %{REQUEST_URI}        ^/28/?$
+	       RewriteRule   ^(.+)$  http://comedy.mtscity.ru/partners/15828/  [L]
+               RewriteCond %{HTTP_HOST}          comedy.mtscity.ru
+               RewriteCond %{REQUEST_URI}        ^/10/?$
+               RewriteRule   ^(.+)$  http://comedy.mtscity.ru/partners/15820/  [L]
+
+    </IfModule>
+
+
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName comedy.mtsvideo.ru
+    DocumentRoot /var/www/instances/fake_instance
+    #DocumentRoot /var/www/from_quattro/sites/comedy.mtsvideo.ru
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/comedy.mtsvideo.ru/error_log.%Y-%m-%d 86400 +180"
+
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+
+
+#created by BETEP for Ticket# : 136844
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}        comedy.mtsvideo.ru
+                RewriteCond %{HTTP_USER_AGENT}  .*(iPhone|iPod).*
+                RewriteCond %{HTTP:3g-content}  !yes
+		RewriteRule     ^(.+)$  http://mtsiphone.ru  [L]
+        </IfModule>
+
+#add by vkazanov ticket140579
+        <IfModule mod_rewrite.c>
+        RewriteEngine   On
+        RewriteCond %{HTTP_HOST}        comedy.mtsvideo.ru
+        RewriteCond %{REQUEST_URI}      ^/$
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*ZTE.*R230.*     [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*MTS.*535.*     [OR]
+        RewriteCond %{HTTP:X-OperaMini-Phone-UA} .*MTS.*535.*     [OR]
+        RewriteCond %{HTTP_USER_AGENT}  .*ZTE.*R230.*
+        RewriteRule   ^(.+)$  http://wap.mts.ru/  [L]
+        </IfModule>
+
+
+# blok partner URL for non MTS users. redirect to partner site, add 10.01.08
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+
+                RewriteCond %{HTTP_HOST}          comedy.mtsvideo.ru
+                RewriteCond %{REQUEST_URI}        ^/$
+                RewriteRule   ^(.+)$  http://comedy.mtscity.ru/  [L]
+
+                RewriteCond %{REQUEST_URI}        ^/partners/5709.*$
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                RewriteRule   ^(.+)$ http://sexpod.ru/?p=4  [L]
+        </IfModule>
+
+        <IfModule mod_rewrite.c>
+                RewriteEngine   On
+                RewriteCond %{HTTP_HOST}          comedy.mtsvideo.ru
+	        RewriteCond %{REQUEST_URI}        ^/28/?$
+                RewriteRule   ^(.+)$  http://comedy.mtsvideo.ru/partners/15828/  [L]		
+	</IfModule>
+
+
+</VirtualHost>
+<VirtualHost *:80>
+    ServerName comedy.mtsvideo.ru
+    DocumentRoot /var/www/instances/fake_instance
+    #DocumentRoot /var/www/from_quattro/sites/comedy.mtsvideo.ru
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/comedy.mtsvideo.ru/error_log.%Y-%m-%d 86400 +180"
+
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+ 
+</VirtualHost>

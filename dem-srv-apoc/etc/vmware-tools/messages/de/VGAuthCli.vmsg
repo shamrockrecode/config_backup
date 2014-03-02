@@ -1,0 +1,72 @@
+##############################################################
+# Copyright (c) 2011-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# German translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#
+
+addsubj.fail = "%1$s: Fehler beim Hinzufügen eines Alias für Benutzer '%2$s': %3$s.\n"
+addsubj.success = "%1$s: Alias hinzugefügt\n"
+
+addoptions.comment = "Betreff Kommentar"
+
+addoptions.file = "Name der PEM-Datei"
+
+addoptions.global = "Zertifikat zur globalen Zuordnungsdatei hinzufügen"
+
+addoptions.subject = "SAML-Betreff"
+
+addoptions.username = "Benutzer, in dessen Zertifikatspeicher Hinzufügung erfolgt"
+
+addoptions.verbose = "Ausführlicher Vorgang"
+
+
+cmdline.parse = "Fehler beim Parsen der Befehlszeile"
+
+cmdline.summary.pemfile = "PEM-Datei"
+cmdline.summary.subject = "Betreff"
+cmdline.summary.username = "Benutzername"
+cmdline.summary.comm = "Kommentar"
+
+list.comment = "Kommentar"
+list.count = "%1$s Gefunden: %2$d Aliase für Benutzer '%3$s'\n"
+
+list.error = "%1$s: Fehler beim Auflisten von Aliasen für Benutzer '%2$s': %3$s.\n"
+list.subject = "Betreff"
+
+listmapped.count = "%1$s Gefunden: %2$d zugeordnete Aliase\n"
+
+listmapped.error = "%1$s: Fehler beim Auflisten von zugeordneten Aliasen: %2$s.\n"
+
+listmapped.subject = "Betreff"
+
+listmapped.username = "Benutzername"
+
+listoptions.username =
+         "Benutzer, dessen Zertifikatspeicher abgefragt wird"
+
+listoptions.verbose = "Ausführlicher Vorgang"
+
+loadfile.fail = "%1$s: Fehler beim Lesen von PEM-Datei '%2$s'\n"
+
+name.any = "<ALLE>"
+
+removesubj.fail = "%1$s: Fehler beim Löschen eines Alias für Benutzer '%2$s': %3$s.\n"
+
+removesubj.success = "%1$s: Alias gelöscht\n"
+
+removeoptions.file = "Name der PEM-Datei"
+
+removeoptions.subject = "SAML-Betreff"
+removeoptions.username =
+             "Benutzer, in dessen Zertifikatspeicher Löschvorgang erfolgt"
+
+removeoptions.verbose = "Ausführlicher Vorgang"
+
+vgauth.init.failed = "Fehler beim Initialisieren von VGAuth"

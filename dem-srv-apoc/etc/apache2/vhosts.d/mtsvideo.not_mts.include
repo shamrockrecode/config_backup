@@ -1,0 +1,640 @@
+##########threegs
+	<IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_gprs_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /threegs
+               RewriteCond %{QUERY_STRING}      main
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_wap_or.X-Forwarded-For.conf
+               RewriteRule     ^(.+)$  http://wap.mtsvideo.ru/not_mts_main/  [L]
+        </IfModule>
+
+###############top_all
+	<IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_gprs_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /top_all(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_wap_or.X-Forwarded-For.conf
+               RewriteRule     /top_all(.*)$   http://wap.mtsvideo.ru/not_mts_top_all$1  [L]
+        </IfModule>
+
+#########tags
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Centralnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Dalnevostochnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Kavkazskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Povolzhskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Severo_Zapadnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Sibirskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Stolichnyj_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/Uralskij_filial_OAO__MegaFon__wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_gprs_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+        <IfModule mod_rewrite.c>
+               RewriteEngine   On
+               RewriteCond %{HTTP_HOST}   (.*)mtsvideo.ru
+               RewriteCond %{REQUEST_URI}       /tags(.*)$
+               RewriteCond %{HTTP:3g-content}  yes
+               RewriteCond %{HTTP:shm-debug} !yes
+               Include /etc/apache2/conf/IP/TELE2_wap_or.X-Forwarded-For.conf
+               RewriteRule     /tags(.*)$   http://wap.mtsvideo.ru/not_mts$1  [L]
+        </IfModule>
+
+
+
+
+        <Location /not_mts_top_all/>
+		RewriteEngine On
+        	Header always set 3g-proxy "no-proxy"
+        	RewriteRule /not_mts_top_all(.*)$ http://wap.playmobile.ru/wapvideo/hits$1 [L]
+        </Location>
+        <Location /not_mts/>
+                RewriteEngine On
+                Header always set 3g-proxy "no-proxy"
+                RewriteRule /not_mts(.*)$ http://wap.playmobile.ru/wapvideo$1 [L]
+       	</Location>
+        <Location /not_mts_main/>
+                RewriteEngine On
+                Header always set 3g-proxy "no-proxy"
+                RewriteRule /not_mts_main(.*)$ http://wap.playmobile.ru/wapvideo$1 [L]
+        </Location>

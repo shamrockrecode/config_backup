@@ -1,0 +1,552 @@
+server {
+    listen 10.1.150.15:80;
+    server_name wap.mtsvideo.ru *.mtsvideo.ru mtsvideo.ru comedy.mtscity.ru;
+    
+    access_log /var/log/nginx/access_log todatabase;
+#    access_log /var/log/nginx/extended.headers	extended_headers;
+    error_log  /var/log/nginx/error_log error;
+    include    /etc/nginx/mime.types;
+    root       /var/www/instances/mtsvideo;
+    ignore_invalid_headers  off;
+    resolver        192.168.200.163 192.168.200.161;
+
+	location  ^~ /previews/ {
+	        }
+
+        location ~ /shell {
+                include /etc/nginx/fastcgi_params;
+                fastcgi_intercept_errors on;
+                fastcgi_read_timeout    60;
+                fastcgi_send_timeout    60;
+
+                fastcgi_pass    localhost:4664;
+                fastcgi_index shell/index.php;
+
+                set $validName $fastcgi_script_name;
+                set $validUri $request_uri;
+
+                if (-d $request_filename)
+                {
+                        set $validName $document_uri/index.php;
+                        set $validUri $request_uri/;
+                }
+
+                if (!-e $request_filename)
+                {
+                        set $validName /shell/index.php;
+                        set $validUri $request_uri;
+                }
+
+                fastcgi_param  SCRIPT_FILENAME $document_root$validName;
+                fastcgi_param  SCRIPT_NAME $validName;
+                fastcgi_param  REQUEST_URI $validUri;
+                fastcgi_param  DOCUMENT_URI $validUri;
+                fastcgi_param  environment "production"; #Locased
+
+                index /shell/index.php;
+        }
+
+	location ~ xcache {
+		auth_basic	"closed site";
+		auth_basic_user_file /var/www/virtualhosts/mtsgames.ru/web/xcache/htpasswd;
+
+		location ~ \.css {
+			add_header Content-Type text/css;
+        	       	 }
+		include /etc/nginx/fastcgi_params;
+		fastcgi_intercept_errors on;
+		fastcgi_read_timeout    60;
+		fastcgi_send_timeout    60;
+
+		fastcgi_pass    localhost:4664;
+		fastcgi_index index.php;
+
+               	set $validName $fastcgi_script_name;
+	        set $validUri $request_uri;
+
+	        fastcgi_param  SCRIPT_FILENAME $document_root$validName;
+                fastcgi_param  SCRIPT_NAME $validName;
+	        fastcgi_param  REQUEST_URI $validUri;
+	        fastcgi_param  DOCUMENT_URI $validUri;
+	        fastcgi_param  environment "production"; #Locased
+	        index index.php;
+
+                allow 194.0.120.198;
+                allow 195.133.69.130;
+                allow 195.133.69.131;
+                allow 192.168.200.21;
+                allow 192.168.200.177;
+                allow 194.87.91.160;
+                allow 192.168.200.19;
+                allow 127.0.0.1;
+                deny all;
+        }
+
+	location ~ xhprof {
+          	location ~ \.css {
+               		add_header Content-Type text/css;
+           	}
+	    	include /etc/nginx/fastcgi_params;
+	        fastcgi_intercept_errors on;
+                fastcgi_read_timeout    60;
+                fastcgi_send_timeout    60;
+
+                fastcgi_pass    localhost:4664;
+                fastcgi_index index.php;
+
+                set $validName $fastcgi_script_name;
+                set $validUri $request_uri;
+
+                fastcgi_param  SCRIPT_FILENAME $document_root$validName;
+                fastcgi_param  SCRIPT_NAME $validName;
+                fastcgi_param  REQUEST_URI $validUri;
+                fastcgi_param  DOCUMENT_URI $validUri;
+                fastcgi_param  environment "production"; #Locased
+                index index.php;
+
+                allow 194.0.120.198;
+                allow 195.133.69.130;
+                allow 195.133.69.131;
+                allow 192.168.200.21;
+                allow 192.168.200.177;
+                allow 194.87.91.160;
+                allow 192.168.200.19;
+                allow 127.0.0.1;
+                deny all;
+        }
+#location for testing
+         
+	 location ~* ^/sup912/(.*)(free|wml|dl)/.*$ {
+               proxy_buffering off;
+               set $subdir $1;
+               proxy_set_header x-shg-tariff tr912;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+               if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+               }
+               if ($request_uri ~* "^/sup912/.*(free|wml|dl)/(.*)$"){
+                        proxy_pass http://dominic.playmobile.ru:9233/$1/$2;
+                        break;
+               }
+                proxy_redirect http://dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/mv/sup912/$subdir/dl/;
+                proxy_redirect http://dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/mv/sup912/$subdir/wml/;
+                proxy_redirect http://dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/mv/sup912/$subdir/free/;
+                }
+
+	 location ~* ^/mv/tr912/(.*)(free|wml|dl)/.*$ {
+		proxy_buffering off;
+                set $subdir $1; 
+		proxy_set_header x-shg-tariff mv/tr912; proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+		set $download_type "default";
+		if ($request_uri ~* "^/(.*)/free/(.*)$" ){set $download_type "free";}
+#		if ($MTS_ALL = "0") {set $download_type "${download_type}_notmts";}
+		if ($download_type = "free_notmts") {rewrite ^(.*)$ http://pulse.mts.ru/content/p/dostup;}
+		if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }
+		if ($request_uri ~* "^/mv/tr912/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+                        set $partner_id $3;
+			more_set_headers   "x-shg-partner-id: $partner_id";
+			proxy_pass http://tr912.dominic.playmobile.ru:9233/$1/$2$3$4;
+			break;
+                }
+		if ($request_uri ~* "^/mv/tr912/.*/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+			more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr912.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+                if ($request_uri ~* "^/mv/tr912/.*(free|wml|dl)/(.*)$"){
+                 proxy_pass http://tr912.dominic.playmobile.ru:9233/$1/$2;
+                 break;
+                }
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/mv/tr912/$subdir/dl/;
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/mv/tr912/$subdir/wml/;
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/mv/tr912/$subdir/free/;
+        }
+
+         location ~* ^/mv/tr900/(.*)(free|wml|dl)/.*$ {
+                proxy_buffering off;
+                set $subdir $1; 
+		proxy_set_header x-shg-tariff mv/tr900; proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+		set $download_type "default";
+                if ($request_uri ~* "^/(.*)/free/(.*)$" ){set $download_type "free";}
+#                if ($MTS_ALL = "0") {set $download_type "${download_type}_notmts";}
+                if ($download_type = "free_notmts") {rewrite ^(.*)$ http://pulse.mts.ru/content/p/dostup;}
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }                
+		if ($request_uri ~* "^/mv/tr900/.*(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+                        more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr900.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+		if ($request_uri ~* "^/mv/tr900/.*(free|wml|dl)/(.*)$"){
+		 proxy_pass http://tr900.dominic.playmobile.ru:9233/$1/$2;
+		 break;
+		}
+		proxy_redirect http://tr900.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/mv/tr900/$subdir/dl/;
+                proxy_redirect http://tr900.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/mv/tr900/$subdir/wml/;
+                proxy_redirect http://tr900.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/mv/tr900/$subdir/free/;
+
+        }
+
+         location ~* ^/mv/tr906/(.*)(free|wml|dl).*$ {
+                proxy_buffering off;
+                set $subdir $1;
+		proxy_set_header x-shg-tariff mv/tr906; proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+                set $download_type "default";
+                if ($request_uri ~* "^/(.*)/free/(.*)$" ){set $download_type "free";}
+#                if ($MTS_ALL = "0") {set $download_type "${download_type}_notmts";}
+                if ($download_type = "free_notmts") {rewrite ^(.*)$ http://pulse.mts.ru/content/p/dostup;}
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }                
+		if ($request_uri ~* "^/mv/tr906/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+                        more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr906.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+                if ($request_uri ~* "^/mv/tr906/.*/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+                        more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr906.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+                if ($request_uri ~* "^/mv/tr906/.*(free|wml|dl)(.*)$"){
+                 proxy_pass http://tr906.dominic.playmobile.ru/$1$2;
+                 break;
+                }
+		proxy_redirect http://wap.mtsvideo.ru/dl/ http://wap.mtsvideo.ru/mv/tr906/$subdir/dl/;
+                proxy_redirect http://tr906.dominic.playmobile.ru/  http://wap.mtsvideo.ru/mv/tr906/$subdir/;
+		proxy_redirect http://tr906.dominic.playmobile.ru/dl/  http://wap.mtsvideo.ru/mv/tr906/$subdir/dl/;
+                proxy_redirect http://tr906.dominic.playmobile.ru/wml/  http://wap.mtsvideo.ru/mv/tr906/$subdir/wml/;
+                proxy_redirect http://tr906.dominic.playmobile.ru/free/ http://wap.mtsvideo.ru/mv/tr906/$subdir/free/;
+
+        }
+
+         location ~* ^/mv/tr908/(.*)(free|wml|dl)/.*$ {
+                proxy_buffering off;
+                set $subdir $1;
+		proxy_set_header x-shg-tariff mv/tr908;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+                set $download_type "default";
+                if ($request_uri ~* "^/(.*)/free/(.*)$" ){set $download_type "free";}
+#                if ($MTS_ALL = "0") {set $download_type "${download_type}_notmts";}
+		if ($download_type = "free_notmts") {rewrite ^(.*)$ http://pulse.mts.ru/content/p/dostup;}
+               	if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+               	}                
+		if ($request_uri ~* "^/mv/tr908/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+                        more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr908.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+                if ($request_uri ~* "^/mv/tr908/.*/(free|wml|dl)/(.*/jmppid.)(\d+)(/.*)$"){
+			set $partner_id $3;
+                        more_set_headers   "x-shg-partner-id: $partner_id";
+                        proxy_pass http://tr908.dominic.playmobile.ru:9233/$1/$2$3$4;
+                        break;
+                }
+                if ($request_uri ~* "^/mv/tr908/.*(free|wml|dl)/(.*)$"){
+                 proxy_pass http://tr908.dominic.playmobile.ru:9233/$1/$2;
+                 break;
+                }
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/mv/tr908/$subdir/dl/;
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/mv/tr908/$subdir/wml/;
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/mv/tr908/$subdir/free/;
+
+       }
+        
+	location ~* ^/tr900/(.*)(free|wml|dl)/.*$ {
+                proxy_buffering off;
+                set $subdir $1; 
+		proxy_set_header x-shg-tariff tr900;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+		set $download_type "default";
+                if ($request_uri ~* "^/(.*)/free/(.*)$" ){set $download_type "free";}
+                if ($MTS_ALL = "0") {set $download_type "${download_type}_notmts";}
+                if ($download_type = "free_notmts") {rewrite ^(.*)$ http://pulse.mts.ru/content/p/dostup;}
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }		
+		if ($request_uri ~* "^/tr900/(free|wml|dl)/(.*)$"){
+			 proxy_pass http://tr900.dominic.playmobile.ru:9233/$1/$2;
+			 break;
+		}
+                if ($request_uri ~* "^/tr900/.*/(free|wml|dl)/(.*)$"){
+                        proxy_pass http://tr900.dominic.playmobile.ru:9233/$1/$2;
+                        break;
+                }
+		proxy_redirect http://tr900.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/tr900/$subdir/dl/;
+                proxy_redirect http://tr900.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/tr900/$subdir/wml/;
+                proxy_redirect http://tr900.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/tr900/$subdir/free/;
+
+        }
+	 
+	 location ~* ^/tr906/(.*)(free|wml|dl)/.*$ {
+               proxy_buffering off;
+               set $subdir $1; 
+	       proxy_set_header x-shg-tariff tr906;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }
+		if ($request_uri ~* "^/tr906/.*(free|wml|dl)/(.*)$"){
+	                proxy_pass http://tr906.dominic.playmobile.ru:9233/$1/$2;
+                        break;
+                }
+                proxy_redirect http://tr906.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/tr906/$subdir/dl/;
+                proxy_redirect http://tr906.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/tr906/$subdir/wml/;
+                proxy_redirect http://tr906.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/tr906/$subdir/free/;
+
+		}
+         
+	 location ~* ^/tr908/(.*)(free|wml|dl)/.*$ {
+               proxy_buffering off;
+               set $subdir $1;
+	       proxy_set_header x-shg-tariff tr908;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }	       
+		if ($request_uri ~* "^/tr908/.*(free|wml|dl)/(.*)$"){
+                        proxy_pass http://tr908.dominic.playmobile.ru:9233/$1/$2;
+                        break;
+               }
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/tr908/$subdir/dl/;
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/tr908/$subdir/wml/;
+                proxy_redirect http://tr908.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/tr908/$subdir/free/;
+
+                }
+
+         location ~* ^/tr912/(.*)(free|wml|dl)/.*$ {
+               proxy_buffering off;
+               set $subdir $1; 
+	       proxy_set_header x-shg-tariff tr912;  proxy_set_header x-shg-server-address $server_addr; proxy_set_header x-shg-url $scheme://$host$request_uri;
+	        #TT515488
+		set $515488_partner bad;
+		if ($request_uri ~* "^/tr912/subs/ms-link/(.*)/(jmppid\.13336|jmppid\.13613|jmppid\.13614|jmppid\.13619|jmppid\.13617|jmppid\.13618|jmppid\.13615|jmppid\.13612|jmppid\.13616|jmppid\.14574|jmppid\.14573|jmppid\.14569|jmppid\.14571|jmppid\.14568|jmppid\.14572|jmppid\.14575|jmppid\.14570|jmppid\.16557|jmppid\.16558|jmppid\.16554|jmppid\.16560|jmppid\.16555|jmppid\.16559|jmppid\.16556|jmppid\.16553|jmppid\.16550|jmppid\.16551|jmppid\.16547|jmppid\.16545|jmppid\.16548|jmppid\.16552|jmppid\.16549|jmppid\.16546|jmppid\.13337|jmppid\.13339|jmppid\.13340|jmppid\.13344|jmppid\.13343|jmppid\.13338|jmppid\.13342|jmppid\.13341|jmppid\.14125|jmppid\.14126|jmppid\.14122|jmppid\.14120|jmppid\.14123|jmppid\.14127|jmppid\.14124|jmppid\.14121|jmppid\.14594|jmppid\.14595|jmppid\.14599|jmppid\.14600|jmppid\.14596|jmppid\.14593|jmppid\.14597|jmppid\.14598|jmppid\.17439|jmppid\.17436|jmppid\.17432|jmppid\.17434|jmppid\.17433|jmppid\.17437|jmppid\.17438|jmppid\.17435|jmppid\.17805)/(.*)$") {set $515488_partner ok;}
+                if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }
+		if ($515488_partner = "ok"){
+		proxy_pass http://tr912.dominic.playmobile.ru:9233/$1/$2/$3;
+		break;
+		}
+	                if ($515488_partner = "bad"){
+                        rewrite ^.*$  http://club.playmobile.ru/eromix/ ;
+                        break;
+                }
+	       #TT515488 end
+		if ($request_uri ~* "^/tr912/.*(free|wml|dl)/(.*)$"){
+                        proxy_pass http://tr912.dominic.playmobile.ru:9233/$1/$2;
+                        break;
+                }
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/dl/  http://wap.mtsvideo.ru/tr912/$subdir/dl/;
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/wml/  http://wap.mtsvideo.ru/tr912/$subdir/wml/;
+                proxy_redirect http://tr912.dominic.playmobile.ru:9233/free/ http://wap.mtsvideo.ru/tr912/$subdir/free/;
+
+                }
+
+	location ~* ^/sub(\d+)(.*)$ {
+		set $3grewrite "rewrite";
+		if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+		if ($3grewrite = "rewrite") {
+                 rewrite  ^/sub(\d+)(.*)$ http://pulse.mts.ru/content/p/vi1/sub$1;
+		}
+		proxy_set_header  X-Real-IP        $remote_addr;
+#		proxy_set_header no_address                       $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+		proxy_pass  http://subs.playmobile.ru/sub$1$2?$args;
+		proxy_redirect http://subs.playmobile.ru http://wap.mtsvideo.ru/sub$1$2;
+	}
+
+	location ~* ^/p([0-9]+)/sub([0-9]+)(.*)$ {
+		set $3grewrite "rewrite";
+		if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+		if ($3grewrite = "rewrite") {
+		 rewrite  ^/p([0-9]+)/sub([0-9]+)(.*)$  http://pulse.mts.ru/content/p/vi1/p$1/sub$2;
+		}
+		proxy_set_header  X-Real-IP        $remote_addr;
+#		proxy_set_header no_address			 $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_pass  http://subs.playmobile.ru/p$1/sub$2$3?$args;
+        }
+
+	location ~* ^/p([0-9]+)/adult2(.*)$ {
+		set $3grewrite "rewrite";
+		if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+		if ($3grewrite = "rewrite") {
+		 rewrite ^/p([0-9]+)/adult2(.*)$  http://pulse.mts.ru/content/p/vi1/p$1/adult2$2;
+		}
+		proxy_set_header  X-Real-IP        $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+		proxy_pass http://subs.mtsgames.ru/p$1/adult2$2?$args;
+            	proxy_redirect http://subs.playmobile.ru http://wap.mtsvideo.ru/p$1/adult2$2;
+	}
+
+        location ~* ^/p([0-9]+)/sclick2(.*)$ {
+        	set $3grewrite "rewrite";
+		if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+		if ($3grewrite = "rewrite") {
+		 rewrite ^/p([0-9]+)/sclick2(.*)$  http://pulse.mts.ru/content/p/vi1/p$1/sclick2$2;
+		} 
+		proxy_set_header  X-Real-IP        $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_pass http://subs.mtsgames.ru/p$1/sclick2$2?$args;
+                proxy_redirect http://subs.playmobile.ru http://wap.mtsvideo.ru/p$1/sclick2$2;
+        }
+
+        location ~* ^/p([0-9]+)/basket(.*)$ {
+		set $3grewrite "rewrite";
+		if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+		if ($3grewrite = "rewrite") {
+		  rewrite ^/p([0-9]+)/basket(.*)$  http://pulse.mts.ru/content/p/vi1/p$1/basket$2;
+		}
+                proxy_set_header  X-Real-IP        $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Host $host;
+                proxy_pass http://subs.mtsgames.ru/p$1/basket$2?$args;
+                proxy_redirect http://subs.playmobile.ru http://wap.mtsvideo.ru/p$1/basket$2;
+        }
+
+#iticket513244
+ 
+	location ^~ /trna/subs/ms-tour/ {
+		if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }
+		proxy_pass http://wapjava.ru/;
+		break;
+	  }
+	location ^~ /trna/subs/ms-subs/ {
+		if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                }
+		proxy_pass http://wapjava.ru/;
+		break;
+	  }
+	location ^~ /mv/tr912/subs/ms/ {
+		 if ($request_uri ~* "^/mv/tr912/subs/ms/(.*)/x.(.*)/$"){
+			 set $download_hash $2;
+		 }
+		 secure_link $download_hash;
+		 secure_link_md5 "$remote_addr$http_user_agent cegthctrhtnyjtckjdj";
+		 if ($secure_link != "1") {
+		 	rewrite ^(.*)$ http://club.playmobile.ru/eromix/;
+		 }
+                 if ($request_uri !~* "^.*addr\..*$"){
+                        rewrite ^(.*)$ http://pulse.mts.ru/msisdn/domi_detect.php?backurl=http://wap.mtsvideo.ru$1;
+                        break;
+                 }
+		 proxy_pass http://d.playmobile.ru/$1;
+		 break;
+	}
+#end of ticket513244
+
+	location ~ ^.*$ {
+               proxy_set_header  X-Real-IP        $remote_addr;
+               proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+               proxy_set_header X-Forwarded-Host $host;
+
+             set $3grewrite "no_rewrite";
+             if ($request_uri ~* "^/?$" ){set $3grewrite "main";}
+             if ($http_3g_content = "yes") {set $3grewrite "3gcontent";}
+	     if ($BEE_TELE2_MEGAFON_BVK_UKR = "1"){set $3grewrite "${3grewrite}_notmts";}
+	     if ($uri ~* "^/p([0-9]+)/*$") {set $3grewrite "partner";}
+	     if ($args ~ "^relocation=1") {set $3grewrite "relocation";}
+	     if ($args ~ "^pkey=.*") {set $3grewrite "${3grewrite}_pkey";}
+             if ($request_uri ~* "^/quantum(.*)$" ){set $3grewrite "no_rewrite";}
+	     
+	     if ($3grewrite = "relocation"){
+	     	rewrite ^(.*)$ http://pulse.mts.ru/content/category/video;
+		}
+	     if ($3grewrite = "partner_pkey"){
+	     	rewrite ^/p([0-9]+)(.*)$ http://pulse.mts.ru/content/category/video$2;
+		}
+            if ($3grewrite = "3gcontent_notmts"){
+		rewrite ^/wapvideo(.*)$  http://wap.playmobile.ru/wapvideo$1?;
+		rewrite ^/p([0-9]+)/wapvideo(.*)$  http://wap.playmobile.ru/p$1/wapvideo$2?;
+		add_header 3g-proxy no-proxy;
+#                break;
+                }
+	     if ($3grewrite = "main"){
+                rewrite ^(.*)$ http://pulse.mts.ru/content/category/video;
+                break;
+                }
+	     if ($request_uri ~ "^/mo_subscribe(.*)$"){
+                proxy_pass http://subs.playmobile.ru/mo_subscribe/$1;
+                break;
+                }	
+             if ($request_uri ~ "^/sc/(.*)$"){ 
+                proxy_pass  http://subs.mtsgames.ru/sc/$1;
+                break;
+                }
+             if ($request_uri ~ "^/p([0-9]+)/sc/(.*)$"){
+                proxy_pass  http://subs.mtsgames.ru/p$1/sc/$2;
+                break;
+                }
+	    if ($request_uri ~ "^/sd/(.*)$"){
+                proxy_pass  http://epa.playmobile.ru/sd/$1;
+                break;
+		}
+	    if ($request_uri ~ "^/mv/tr906/a1/(.*)$"){
+		proxy_pass http://m.o4evidec.ru/puls.mts.ru/$1;
+		break;
+		}
+	    if ($request_uri ~ "^/pss(.*)$"){
+	    	proxy_pass http://dominic.playmobile.ru:9233/pss$1;
+		break;
+		}
+	
+       	    if ($request_uri ~ "^/quantum/(.*)$"){
+               proxy_pass http://subs.playmobile.ru/quantum/$1;
+               break;
+               }
+
+                include /etc/nginx/fastcgi_params;
+                fastcgi_intercept_errors on;
+                fastcgi_read_timeout    60;
+                fastcgi_send_timeout    60;
+
+                fastcgi_pass    localhost:4664;
+                fastcgi_index out.php;
+
+                set $validName $fastcgi_script_name;
+                set $validUri $request_uri;
+
+                if (-d $request_filename)
+                {
+                        set $validName $document_uri/index.php;
+                        set $validUri $request_uri/;
+                }
+
+                if (!-e $request_filename)
+                {
+                        set $validName /index.php;
+                        set $validUri $request_uri;
+                }
+                fastcgi_param  SCRIPT_FILENAME $document_root$validName;
+                fastcgi_param  SCRIPT_NAME $validName;
+                fastcgi_param  REQUEST_URI $validUri;
+                fastcgi_param  DOCUMENT_URI $validUri;
+                fastcgi_param  environment "production"; #Locased
+        }
+        index index.php;
+
+}
+

@@ -1,0 +1,11 @@
+postgres_ebuilds="${postgres_ebuilds} postgresql-base-8.4.4-r2"
+postgres_prefix=/usr/lib64/postgresql-8.4
+postgres_datadir=/usr/share/postgresql-8.4
+postgres_bindir=/usr/lib64/postgresql-8.4/bin
+postgres_symlinks=(
+/usr/include/postgresql-8.4 /usr/include/postgresql
+/usr/include/postgresql-8.4/libpq-fe.h /usr/include/libpq-fe.h
+/usr/include/postgresql-8.4/pg_config_manual.h /usr/include/pg_config_manual.h
+/usr/include/postgresql-8.4/libpq /usr/include/libpq
+/usr/include/postgresql-8.4/postgres_ext.h /usr/include/postgres_ext.h
+)

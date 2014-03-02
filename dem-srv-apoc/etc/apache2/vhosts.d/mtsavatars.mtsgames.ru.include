@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+    ServerName mtsavatars.mtsgames.ru
+    DocumentRoot /var/www/instances/mtsavatars/
+
+    ScriptAlias /cgi-bin/ "/var/www/instances/mtsavatars/cgi-bin/"
+
+    <Directory "/var/www/instances/mtsavatars/cgi-bin">
+	AllowOverride All
+        Options FollowSymLinks ExecCGI
+        Order allow,deny
+        Allow from all
+    </Directory>
+                                            
+
+
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/mtsavatars.mtsgames.ru/error_log.%Y-%m-%d 86400 +180"
+
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+</VirtualHost>

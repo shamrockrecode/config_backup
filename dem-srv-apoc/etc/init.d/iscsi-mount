@@ -1,0 +1,26 @@
+#!/sbin/runscript
+
+depend() {
+        need iscsid multipathd
+        before mysql  # fix to whatever dependencies there are.
+}
+
+start() {
+        ebegin "Mounting _netdev devices"
+        sleep 3
+        # make sure multipaths are loaded and settled
+        #/sbin/multipath
+        /bin/mount -a -O _netdev -v -o noatime
+        eend $?
+}
+
+stop() {
+        ebegin "Unmounting _netdev devices"
+        /bin/umount -a -O _netdev -v
+        eend $?
+}
+
+restart() {
+        svc_stop
+        svc_start
+}

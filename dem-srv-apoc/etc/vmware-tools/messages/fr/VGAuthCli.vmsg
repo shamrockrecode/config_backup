@@ -1,0 +1,72 @@
+##############################################################
+# Copyright (c) 2011-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# French translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#
+
+addsubj.fail = "%1$s : Échec de l'ajout de l'alias pour l'utilisateur '%2$s' : %3$s.\n"
+addsubj.success = "%1$s : alias ajouté\n"
+
+addoptions.comment = "commentaire de l'objet"
+
+addoptions.file = "Nom du fichier PEM"
+
+addoptions.global = "Ajouter le certificat au fichier de mappage global"
+
+addoptions.subject = "L'objet SAML"
+
+addoptions.username = "Utilisateur dont le magasin de certificats est en train d'être ajouté"
+
+addoptions.verbose = "Opération détaillée"
+
+
+cmdline.parse = "Échec de l'analyse de ligne de commande"
+
+cmdline.summary.pemfile = "Fichier PEM"
+cmdline.summary.subject = "objet"
+cmdline.summary.username = "nom d'utilisateur"
+cmdline.summary.comm = "commentaire"
+
+list.comment = "Commentaire"
+list.count = "%1$s A trouvé %2$d alias pour l'utilisateur '%3$s'\n"
+
+list.error = "%1$s : impossible de lister les alias pour l'utilisateur '%2$s' : %3$s.\n"
+list.subject = "Objet"
+
+listmapped.count = "%1$s A trouvé %2$d alias mappés\n"
+
+listmapped.error = "%1$s : impossible de lister les alias mappés : %2$s.\n"
+
+listmapped.subject = "Objet"
+
+listmapped.username = "Nom d'utilisateur"
+
+listoptions.username =
+         "Utilisateur dont le magasin de certificats est en cours d'interrogation"
+
+listoptions.verbose = "Opération détaillée"
+
+loadfile.fail = "%1$s : impossible de lire le fichier PEM '%2$s'\n"
+
+name.any = "<ANY>"
+
+removesubj.fail = "%1$s : impossible de supprimer l'alias pour l'utilisateur '%2$s' : %3$s.\n"
+
+removesubj.success = "%1$s : alias supprimé\n"
+
+removeoptions.file = "Nom du fichier PEM"
+
+removeoptions.subject = "L'objet SAML"
+removeoptions.username =
+             "Utilisateur dont le magasin de certificat est en cours de suppression"
+
+removeoptions.verbose = "Opération détaillée"
+
+vgauth.init.failed = "Échec de l'initialisation de VGAuth"

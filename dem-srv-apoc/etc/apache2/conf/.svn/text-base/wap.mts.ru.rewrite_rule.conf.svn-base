@@ -1,0 +1,179 @@
+    <IfModule mod_rewrite.c>
+        RewriteEngine   On
+
+
+#add by berg@ Ticket #: 211833
+        RewriteCond %{HTTP_HOST}        .*mts.ru
+        RewriteCond %{HTTP_USER_AGENT}  .*(iPhone|iPod).*
+        RewriteCond %{REQUEST_URI}         !^/blacklisted.?
+        RewriteCond %{REQUEST_URI}        !^/replenish.?
+        RewriteCond %{REQUEST_URI}        !^/aoc.?
+        RewriteCond %{REQUEST_URI}        !^/system_error.?
+        RewriteRule   ^(.+)$  http://iphone.mts.ru  [L]
+
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/bond.*$
+        RewriteRule   ^(.+)$  http://mobiletv.ru/bond/  [L]
+
+#Ticket #: 179104 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/forum.*$
+#        RewriteRule   ^(.+)$  http://wap.spbmts.ru/3g/  [L]
+        RewriteRule   ^(.+)$   http://wap.yugmts.ru/sochi2008/ [L]
+#Ticket #: 186178 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/olimp.*$
+        RewriteRule   ^(.+)$  http://p1.mts-olymp.daem.ru  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/mtscity/?$
+        RewriteRule   ^(.+)$  http://wap.mtscity.ru  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/comedy.*$
+        RewriteRule   ^(.+)$  http://comedy.mtscity.ru  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/smsbox.*$
+        RewriteRule   ^(.+)$  http://wap.mts.ru/smsboxmts  [L]
+
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/mtsmusic.*$
+        RewriteRule   ^(.+)$  http://services.immo.ru/mt/lmj-wap-mt/  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/kinoclub.*$
+        RewriteRule   ^(.+)$  http://wap.mtskino.ru  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/onlinegames.*$
+        RewriteRule   ^(.+)$  http://wap.mts.shamrock-games.ru/index.jsp  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/wifi.?$
+        RewriteRule   ^(.+)$  http://wifi.wap.mts.ru  [L]
+
+
+# add comment by unclead@ 74526 dont need alredy
+#        RewriteCond %{HTTP_HOST}        wap.mts.ru
+#        RewriteCond %{REQUEST_URI}        ^/error.?$
+#        RewriteRule   ^(.+)$  http://wapmts.playmobile.ru/error  [L]
+
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/wifi/java.?$
+        RewriteRule   ^(.+)$  http://mtswifi.promodev.ru/javaapp/  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/odp/?$
+        RewriteRule   ^(.+)$  http://m.ideawidgets.ru/?d=MTS_WAP  [L]
+
+
+        #[ Ticket# : 08703 ]  - by vlt@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/18plus.?$
+        RewriteRule   ^(.+)$  http://mts-ru-portal.waatpartner.com/index.psp  [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/topvideo.*$
+        RewriteRule   ^(.+)$  http://wap.mtsvideo.ru/hot10/  [L]
+
+#       RewriteCond %{HTTP_HOST}        wap.mts.ru
+# tiket 199808
+#        RewriteCond %{REQUEST_URI}        ^/pravila_zachet.*$
+#        RewriteRule   ^(.+)$  http://wap.mts.ru/zachet/pravila_zachet  [L]
+#
+
+#Ticket #: 196592 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/free.*$
+        RewriteRule   ^(.+)$  http://free.mtsgames.ru  [L]
+
+
+#Ticket# 11406 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/avatar.*$
+        RewriteRule   ^(.+)$  http://get.mtscity.ru/free/id.25365/  [L]
+
+#Ticket# 12131 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/2009.?$
+        RewriteRule   ^(.+)$  http://mtskino.ru/2009/  [L]
+
+#Ticket# 20140 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/topgames.?$
+        RewriteRule   ^(.+)$  http://wap.mtsgames.ru/top10  [L]
+
+#Ticket# 27025 add by berg@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/love.?$
+        RewriteRule   ^(.+)$  http://mtskino.ru/1love  [L]
+
+#ticket 25884 add by stas
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/23feb$
+        RewriteRule   ^(.+)$  http://dominic.playmobile.ru/free/id.26323/jmppid.8/  [L]
+
+
+#Ticket# : 27756 add by unclead@
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/playboy$
+        RewriteRule   ^(.+)$  http://playboyclub.services.dilia.ru/dsp.html [L]
+
+#Ticket# : 51936 ]  Еще редиректы  add by @unclead
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/odp1/$
+        RewriteRule   ^(.+)$  http://m.ideawidgets.ru/?d=MTS_SUB   [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/odp4/$
+        RewriteRule   ^(.+)$  http://m.ideawidgets.ru/?d=MTS_SMS   [L]
+
+        RewriteCond %{HTTP_HOST}        wap.mts.ru
+        RewriteCond %{REQUEST_URI}        ^/odp5/?$
+        RewriteRule   ^(.+)$  http://m.ideawidgets.ru/?d=MTS_FUN   [L]
+
+
+
+
+#redirect to http://wap.mts.ru/mtsonly for NOT MTS users
+
+                RewriteCond %{HTTP_HOST}                wap.mts.ru
+                RewriteCond %{REQUEST_URI}        ^/smsboxmts/$
+
+                Include /etc/apache2/conf/IP/MTS_wap_not.conf
+                Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+                Include /etc/apache2/conf/ip_office_not.conf
+
+
+                RewriteRule   ^(.+)$  http://wap.mts.ru/mtsonly  [L]
+
+#redirect to http://wap.mts.ru/mtsonly for NOT MTS users
+#edit by unclead ticket 161835,167050
+#                RewriteCond %{HTTP_HOST}                wap.mts.ru
+#                RewriteCond %{REQUEST_URI}        ^/redbox/?$
+#
+#                Include /etc/apache2/conf/MTS_wap_not.conf
+#                Include /etc/apache2/conf/MTS_gprs_not.conf
+#                Include /etc/apache2/conf/ip_office_not.conf
+#
+#                RewriteRule   ^(.+)$  http://wap.mts.ru/mtsonly  [L]
+
+
+#add by vlt@ Ticket# : 22574
+#by vlt@. Removed bcause of abo@mts.ru
+#        RewriteCond %{HTTP_HOST}        wap.mts.ru
+#        RewriteCond %{REMOTE_ADDR}  213.59.32.146      [OR]
+#        RewriteCond %{REMOTE_ADDR}  80.72.213.62       [OR]
+#        RewriteCond %{REMOTE_ADDR}  217.8.235.194      [OR]
+#        RewriteCond %{REMOTE_ADDR}  217.8.236.11       [OR]
+#        RewriteCond %{REMOTE_ADDR}  217.8.236.248      [OR]
+#        #RewriteCond %{REMOTE_ADDR}  87.226.164.162    [OR]
+#        RewriteCond %{REMOTE_ADDR}  217.8.236.(1(2[789]|[3-9][0-9])|2[0-9][0-9])
+#        RewriteRule   ^(.+)$  http://wap.poisk.mts.ru  [L]
+
+
+    </IfModule>

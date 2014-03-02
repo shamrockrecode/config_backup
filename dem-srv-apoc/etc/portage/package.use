@@ -1,0 +1,13 @@
+dev-db/postgresql-base doc pg-intdatetime
+net-analyzer/zabbix agent -curl -frontend -jabber -ldap -mysql -oracle -postgres -server -snmp -sqlite3 -vhosts
+dev-db/mysql berkdb perl -big-tables -cluster -debug -embedded -extraengine -latin1 -max-idx-128 -minimal -selinux -ssl -static
+net-misc/ntp ipv6 -openntpd vim-syntax caps -debug -parse-clocks -selinux -ssl -zeroconf
+www-servers/nginx pcre perl zlib -addition -debug fastcgi -flv -imap -random-index ssl -status -sub -webdav
+media-gfx/imagemagick bzip2 cxx openmp perl zlib -X -autotrace -djvu -fftw -fontconfig -fpx -graphviz -gs -hdri -jbig jpeg -jpeg2k -lcms -lqr -openexr png -q32 -q8 -raw -svg tiff truetype -wmf -xml
+mail-mta/sendmail ipv6 tcpd -ldap mailwrapper -mbox -nis -sasl -sockets -ssl
+media-libs/gd fontconfig jpeg png truetype -xpm
+dev-lang/php berkdb bzip2 cli crypt gdbm iconv ipv6 ncurses nls pcre readline reflection session spl unicode zlib -adabas -apache2 bcmath -birdstep calendar -cdb -cgi -cjk -concurrentmodphp ctype curl curlwrappers -db2 -dbase -dbmaker -debug discard-path -doc -empress -empress-bcs -esoob -exif -fastbuild -fdftk -filter -firebird -flatfile force-cgi-redirect -frontbase -ftp gd -gd-external -gmp hash -imap -inifile -interbase -iodbc -java-external json -kerberos -kolab -ldap -ldap-sasl -libedit -mcve mhash -msql -mssql mysql mysqli -oci8 -oci8-instant-client -odbc pcntl pdo -pic posix -postgres -qdbm -recode -sapdb sharedext -sharedmem simplexml -snmp -soap sockets -solid -spell -sqlite -ssl -suhosin -sybase -sybase-ct -sysvipc -threads -tidy -tokenizer -truetype -wddx xml xmlreader xmlrpc xmp -xmlwriter -xpm xsl -yaz -zip force-cgi-redirect fpm
+net-analyzer/zabbix agent
+sys-auth/nss_ldap ssl -debug kerberos sasl
+
+mail-mta/postfix berkdb ldap mbox pam ssl vda

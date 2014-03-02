@@ -1,0 +1,175 @@
+<VirtualHost *:80>
+    ServerName  wap.naked.ru
+    ServerAlias ero.zagruzka.com
+    ServerAlias ero.daem.ru
+    #ServerAlias arma.playmobile.ru
+    #ServerAlias wap.videomobile.ru
+    #ServerAlias videomobile.ru
+	DocumentRoot /var/www/instances/wap.naked.ru
+    #DocumentRoot /home/from_leeloo/wap.eroportal.ru/
+
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/wap.eroportal.ru/error_log.%Y-%m-%d 86400 +180"
+
+        #add by vkazanov ticket104988 
+       # <IfModule mod_rewrite.c>
+       # RewriteEngine   On
+       # RewriteCond %{HTTP_HOST}          wap.naked.ru
+       # RewriteCond %{REQUEST_URI}        ^/beefree/free/(.*)
+       # RewriteCond %{REQUEST_URI}        !.*/addr\..*
+        # </IfModule>
+
+#test vkazanov
+#<IfModule mod_rewrite.c>
+#	RewriteEngine   On
+#	RewriteCond %{HTTP_HOST}       wap.naked.ru.
+#        RewriteCond %{REQUEST_URI}      ^.*$
+#	RewriteRule   ^(.*)$  http://wap.naked.ru$1  [L]
+#</IfModule>
+
+        ####add by vkazanov 146297
+	<IfModule mod_rewrite.c>
+	RewriteEngine   On
+	RewriteCond %{HTTP_USER_AGENT}  .*Vodafone.*543.*    [OR]
+	RewriteCond %{HTTP_USER_AGENT}  .*MTS.*540.*
+	RewriteRule     ^(.+)$  http://wap.mts.ru/browseonly  [L]
+	</IfModule>
+
+    <IfModule mod_rewrite.c>
+	RewriteEngine   On
+        RewriteCond %{HTTP_HOST}       wap.naked.ru
+        RewriteCond %{REQUEST_URI}      ^/naked/partners/.*$
+        Include /etc/apache2/conf/IP/MTS_wap_not.conf
+	Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_not.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_not.conf
+        Include /etc/apache2/conf/IP/MTS_wap_not.X-Forwarded-For.conf
+        Include /etc/apache2/conf/IP/MTS_gprs_not.X-Forwarded-For.conf
+        Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_not.X-Forwarded-For.conf
+        Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_not.X-Forwarded-For.conf
+        Include /etc/apache2/conf/IP/NMG___Office_gprs_not.conf
+	
+       RewriteRule   ^/naked/partners/([0-9]+)/.*$  http://wap.playmobile.ru/p$1/demo  [L]
+
+    </IfModule>
+<IfModule mod_rewrite.c>
+#ticket 127881
+	RewriteEngine   On
+	RewriteCond %{HTTP_HOST}       wap.naked.ru
+	RewriteCond %{REQUEST_URI}      ^(.*)$
+	RewriteCond %{REQUEST_URI}     !^/beefree/.*$
+	RewriteCond %{REQUEST_URI}     !^/ups/.*$
+	RewriteCond %{REQUEST_URI}     !^/trafshar/.*$
+	RewriteCond %{REQUEST_URI}     !^/intern/.*$
+	RewriteCond %{REQUEST_URI}     !^/tele2test/.*$
+        RewriteCond %{REMOTE_ADDR} !194.0.120.198|10.1.150.5|194.87.13.115|194.87.13.100
+	Include /etc/apache2/conf/IP/MTS_wap_not.conf
+	Include /etc/apache2/conf/IP/MTS_gprs_not.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_not.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_not.conf
+        Include /etc/apache2/conf/IP/MTS_wap_not.X-Forwarded-For.conf
+	Include /etc/apache2/conf/IP/MTS_gprs_not.X-Forwarded-For.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__wap_not.X-Forwarded-For.conf
+	Include /etc/apache2/conf/IP/Bi_Lajn__VympelKom__gprs_not.X-Forwarded-For.conf
+        Include /etc/apache2/conf/IP/NMG___Office_gprs_not.conf
+	RewriteRule   ^(.*)$  http://wap.playmobile.ru/games/top_all/ [L]
+</IfModule>
+
+
+
+
+
+
+
+    <IfModule mod_rewrite.c>
+		
+    RewriteEngine   On
+    RewriteCond %{HTTP_HOST}         wap.naked.ru
+    RewriteCond %{REQUEST_URI}        ^/naked/partners/103250/?
+    RewriteRule   ^(.+)$  http://wap.playmobile.ru/p103250  [L]
+
+    RewriteCond %{HTTP_HOST}         ero.zagruzka.com
+    RewriteCond %{REQUEST_URI}        ^/$
+    RewriteRule   ^(.+)$  http://ero.zagruzka.com/naked/partners/995/  [L]
+
+
+    RewriteCond %{HTTP_HOST}         ero.daem.ru
+    RewriteCond %{REQUEST_URI}        ^/$
+    RewriteRule   ^(.+)$  http://ero.daem.ru/naked/partners/995/  [L]
+
+    </IfModule>
+
+
+# add by unclead@ Ticket# : 79235
+        ProxyPass /beefree/free/ 	http://proxy2.wapjava.ru/free/
+        ProxyPassReverse /beefree/free/ http://proxy2.wapjava.ru/free/
+
+        ProxyPass /beefree/wml/ 	http://proxy2.wapjava.ru/wml/
+        ProxyPassReverse /beefree/wml/ http://proxy2.wapjava.ru/wml/
+
+#Dlia otgryzki css & images stranici pokypki v Dominic
+        ProxyPass /beefree/css/ http://proxy2.wapjava.ru/css/
+        ProxyPassReverse /beefree/css/ http://proxy2.wapjava.ru/css/
+
+#        ProxyPass /beefree/images/ http://proxy.wapjava.ru/images/
+#        ProxyPassReverse /beefree/images/ http://proxy.wapjava.ru/images/
+
+# add by akazarin@ Ticket# : 120508
+
+        <Location /trafshar/wml/>
+        ProxyPass            http://proxy3.wapjava.ru/wml/
+        ProxyPassReverse     http://proxy3.wapjava.ru/wml/
+        </Location>
+
+        <Location /trafshar/css/>
+        ProxyPass                   http://proxy3.wapjava.ru/css/
+        ProxyPassReverse            http://proxy3.wapjava.ru/css/
+        </Location>
+
+        <Location /trafshar/images/>
+        ProxyPass          http://proxy3.wapjava.ru/images/
+        ProxyPassReverse   http://proxy3.wapjava.ru/images/
+        </Location>
+
+
+	<Location /trafshar/>
+	ProxyPass                 http://proxy3.wapjava.ru/
+        ProxyPassReverse          http://proxy3.wapjava.ru/
+	</Location>
+	
+
+# add by akazarin@ Ticket# : 138809
+
+        ProxyPass /ups/free/                http://proxy6.wapjava.ru/free/
+        ProxyPassReverse /ups/free/         http://proxy6.wapjava.ru/free/
+
+
+        ProxyPass /ups/wml/            http://proxy6.wapjava.ru/wml/
+        ProxyPassReverse /ups/wml/     http://proxy6.wapjava.ru/wml/
+
+
+# proxy add by unclead@ Ticket# 121526
+
+        ProxyPass /intern/free/        http://proxy4.wapjava.ru/free/
+        ProxyPassReverse /intern/free/ http://proxy4.wapjava.ru/free/
+        ProxyPass /intern/wml/         http://proxy4.wapjava.ru/wml/
+        ProxyPassReverse /intern/wml/  http://proxy4.wapjava.ru/wml/
+
+
+	ProxyPassMatch ^/intern[/]?(.*)$                http://intern.mtsvideo.ru/$1
+#       ProxyPassReverse /intern/         http://intern.mtsvideo.ru/
+       <LocationMatch ^/intern[/]?(.*)$>
+#                ProxyPassReverse /
+                ProxyHTMLEnable On
+                ProxyHTMLDoctype XHTML
+		ProxyHTMLURLMap / /intern/
+		RequestHeader  unset  Accept-Encoding
+        </LocationMatch>
+
+
+#----------------------------------
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+
+</VirtualHost>

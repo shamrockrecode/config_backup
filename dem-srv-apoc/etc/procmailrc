@@ -1,0 +1,2 @@
+# Use maildir-style mailbox in user's home directory
+DEFAULT=$HOME/.maildir/

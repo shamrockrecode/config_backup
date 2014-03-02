@@ -1,0 +1,54 @@
+# /etc/fstab: static file system information.
+#
+# noatime turns off atimes for increased performance (atimes normally aren't 
+# needed; notail increases performance of ReiserFS (at the expense of storage 
+# efficiency).  It's safe to drop the noatime options if you want and to 
+# switch between notail / tail freely.
+#
+# The root filesystem should have a pass number of either 0 or 1.
+# All other filesystems should have a pass number of 0 or greater than 1.
+#
+# See the manpage fstab(5) for more information.
+#
+
+# <fs>			<mountpoint>	<type>		<opts>		<dump/pass>
+
+# NOTE: If your BOOT partition is ReiserFS, add the notail option to opts.
+#/dev/sda1          /boot                   ext2  noauto,noatime  1 2
+/dev/sda1         /                       reiserfs  noatime,notail,commit=120         0 1
+/dev/sda2               none            swap            sw              0 0
+#/dev/sdb1         none                    swap  sw	        0 0
+#/dev/vg/usr       /usr                    ext3  noatime         1 2
+#/dev/vg/portage   /usr/portage            ext2  noatime         1 2
+#/dev/vg/distfiles /usr/portage/distfiles  ext2  noatime         1 2
+#/dev/vg/home      /home                   ext3  noatime         1 2
+#/dev/vg/opt       /opt                    ext3  noatime         1 2
+#/dev/vg/tmp       /tmp                    ext2  noatime         1 2
+#/dev/vg/var       /var                    ext3  noatime         0 0
+#/dev/vg/vartmp    /var/tmp                ext2  noatime         1 2
+dem-srv-nas:/export/backup/backup_from_apoc	/mnt/backup	nfs	_netdev,rw,async 0 0
+#dem-srv-nas:/export/backup/backup_from_leeloo	/mnt/backup1	nfs     _netdev,rw,async 0 0
+#192.168.200.50:/var/ftp                       	/mnt/ftp	nfs	_netdev,ro,async 0 0
+#dem-srv-nas:/export/ftp         /mnt/ftp        nfs     _netdev,ro,async 0 0
+
+##/dev/mapper/test1      /mnt/test1              ext2    _netdev,noatime 0 0
+#/dev/mapper/mtsiphone1      /mnt/mtsiphone              reiserfs    _netdev,noatime,notail 0 0
+#/dev/mapper/mtscity1      /mnt/mtscity              ext3    _netdev,noatime 0 0
+#/dev/mapper/urchin1      /mnt/.nfscache/urchin              ext3    _netdev,noatime 0 0
+#/dev/mapper/weplayfiles	/mnt/weplayfiles		ext3	_netdev,noauto,noatime	0 0
+#/dev/fd0		/mnt/floppy	auto		noauto		0 0
+# glibc 2.2 and above expects tmpfs to be mounted at /dev/shm for 
+# POSIX shared memory (shm_open, shm_unlink).
+# (tmpfs is a dynamically expandable/shrinkable ramdisk, and will
+#  use almost no memory if not populated with files)
+shm			/dev/shm	tmpfs		nodev,nosuid,noexec	0 0
+
+#tmpfs   /var/www/virtualhosts/ups_primary/shared/tmp/       tmpfs   size=1G,nr_inodes=40k,mode=0777 0 0
+#tmpfs   /var/www/virtualhosts/redtube.ru_1011/tmp/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+tmpfs   /var/www/virtualhosts/wap.mtsgames.ru/app/current/var/cache/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+tmpfs   /var/www/virtualhosts/wap.mtsgames.ru/app/current/var/tmp/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+#tmpfs   /var/www/virtualhosts/wap.playmobile.ru/app/current/var/cache/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+#tmpfs   /var/www/virtualhosts/subs.playmobile.ru/app/current/var/cache/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+#tmpfs   /var/www/virtualhosts/ups_secondary/shared/var/cache/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+tmpfs   /var/www/virtualhosts/wap.mtsvideo.ru/shared/var/tmp/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0
+tmpfs   /var/www/virtualhosts/wap.mtsvideo.ru/shared/var/cache/       tmpfs   size=1G,nr_inodes=400k,mode=0777 0 0

@@ -1,0 +1,26 @@
+##############################################################
+# Copyright (c) 2010-2013 VMware, Inc.  All rights reserved.
+##############################################################
+#
+# French translation catalog.
+#
+# Please follow a few guidelines when editing this file:
+#   . Try to maintain formatting (e.g., indentation and line breaks).
+#   . Avoid long lines by breaking them into multiple lines.
+#   . Catalogs *must* be in UTF-8.
+#   . Try to keep the file sorted by message id.
+#
+
+pmtimer.warning.caption = "Erreur de configuration du système d'exploitation"
+
+pmtimer.warning.text =
+   "VMware Tools Service a détecté une erreur avec le fonctionnement de ses machines virtuelles "
+   "Le fichier Boot.ini spécifie le paramètre |22/usepmtimer|22 boot. "
+   "Ce paramètre diminue extrêmement les performances de la VM sous certaines "
+   "charges de travail.\n"
+   "\n"
+   "Supprimez le paramètre |22usepmtimer|22 du fichier Boot.ini et redémarrez la "
+   "machine virtuelle pour améliorer ses performances.\n"
+   "\n"
+   "Pour plus d'informations, reportez-vous à l'article 1011714 de la base de connaissances VMware."
+

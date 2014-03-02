@@ -1,0 +1,15 @@
+net-analyzer/zabbix ~amd64
+www-apache/mod_proxy_html ~amd64
+app-shells/smrsh ~amd64
+dev-libs/mpfr ~amd64
+=sys-devel/libtool-1.5.26-r1 ~amd64
+sys-block/lsiutil ~amd64
+media-video/flvtool2 ~amd64
+dev-php/xcache ~amd64
+dev-php/xhprof ~amd64
+=www-servers/nginx-1.0.6 ~amd64
+=sys-kernel/gentoo-sources-3.7.1 ~amd64
+=sys-kernel/linux-headers-3.7 ~amd64
+app-emulation/open-vm-tools ~amd64
+app-emulation/open-vm-tools-kmod ~amd64
+www-servers/nginx ~amd64

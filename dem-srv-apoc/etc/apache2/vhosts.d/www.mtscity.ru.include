@@ -1,0 +1,89 @@
+<VirtualHost *:80>
+    ServerName www.mtscity.ru
+    ServerAlias mtscity.ru
+#    ServerAlias testmm.playmobile.ru
+
+DocumentRoot /var/www/instances/www.mtscity.ru
+#DocumentRoot /home/from_leeloo/web.mtscity.ru/htdocs
+
+    ErrorLog "|/usr/sbin/rotatelogs /var/log/apache2/mtscity.ru/error_log.%Y-%m-%d 86400 +180"
+
+    SetEnv MTSCITY_ENV production
+
+    <Directory />
+        AllowOverride   All
+	Allow from all
+    </Directory>
+
+        # Proxy for Chervaicov java application from MTS City. App on quattro. In future in should be deleted. Configured by vlt@.
+        ProxyPass /java/ http://java-mtscity.mtsgames.ru/
+        ProxyPassReverse /java/ http://java-mtscity.mtsgames.ru/
+
+#[Ticket# 20163] add by berg@
+        ProxyPass /xml/ http://wap.mtscity.ru/xml/
+        ProxyPassReverse /xml/ http://wap.mtscity.ru/xml/
+
+
+    <IfModule mod_rewrite.c>
+	    RewriteEngine   On	    
+
+
+#redirect to wap.mtscity.ru from mtscity.ru WAP users without MR Centr @add by zor
+#
+            RewriteCond %{HTTP_HOST}    mtscity.ru 
+	    RewriteCond %{HTTP_HOST}    !www.mtscity.ru
+            RewriteCond %{REQUEST_URI}        !/java/.*$
+            RewriteCond %{REQUEST_URI}        !/xml/.*$
+            RewriteCond %{REMOTE_ADDR}  194.186.210.81      [OR]
+            RewriteCond %{REMOTE_ADDR}  195.239.153.55      [OR]
+            RewriteCond %{REMOTE_ADDR}  195.85.238.130      [OR]
+            RewriteCond %{REMOTE_ADDR}  217.66.145.215      [OR]
+            RewriteCond %{REMOTE_ADDR}  217.8.224.194       [OR]
+            RewriteCond %{REMOTE_ADDR}  217.8.235.194       [OR]
+            RewriteCond %{REMOTE_ADDR}  81.30.50.66         [OR]
+            RewriteCond %{REMOTE_ADDR}  84.17.224.252       [OR]
+            RewriteCond %{REMOTE_ADDR}  194.186.210.(6[5-9]|[7-9][0-9]|1[01][0-9]|12[0-5])      [OR]
+#МР Сибирь
+            RewriteCond %{REMOTE_ADDR}  217.8.235.194      [OR]
+            RewriteCond %{REMOTE_ADDR}  217.8.236.11      [OR]
+            RewriteCond %{REMOTE_ADDR}  217.8.236.248      [OR]
+            RewriteCond %{REMOTE_ADDR}  213.59.32.146      [OR]
+            RewriteCond %{REMOTE_ADDR}  80.72.213.62      [OR]
+#МР ЮГ
+            RewriteCond %{REMOTE_ADDR}  217.74.244.13      [OR]
+#МР Северо-запад
+            RewriteCond %{REMOTE_ADDR}  217.66.145.10      [OR]
+            RewriteCond %{REMOTE_ADDR}  217.66.145.15      [OR]
+#МР Ураl
+            RewriteCond %{REMOTE_ADDR}  213.87.72.73      [OR]
+#МР Поволжье СЗ
+            RewriteCond %{REMOTE_ADDR}  212.92.139.198      [OR]
+#МР Поволжье ЮВ
+            RewriteCond %{REMOTE_ADDR}  195.74.84.32      [OR]
+            RewriteCond %{REMOTE_ADDR}  194.186.210.61      [OR]
+            RewriteCond %{REMOTE_ADDR}  195.151.48.30      [OR]
+            RewriteCond %{REMOTE_ADDR}  194.186.210.(6[5-9]|[7-9][0-9]|1[01][0-9]|12[0-5])      [OR]
+            RewriteCond %{REMOTE_ADDR}  195.74.84.241      [OR]
+#МР Дальний Восток
+            RewriteCond %{REMOTE_ADDR}  80.83.238.246      [OR]
+            RewriteCond %{REMOTE_ADDR}  80.83.238.247      [OR]
+            #RewriteCond %{REMOTE_ADDR}  194.0.120.198      [OR]
+#slavamobile@bk.ru
+            RewriteCond %{REMOTE_ADDR}  91.202.71.249
+            RewriteRule   ^(.+)$  http://wap.mtscity.ru/  [L]
+
+#redirect to wap.mtscity.ru from mtscity.ru GRPS users @add by zor
+
+            RewriteCond %{HTTP_HOST}    mtscity.ru
+            RewriteCond %{HTTP_HOST}    !www.mtscity.ru
+            RewriteCond %{REQUEST_URI}        !/java/.*$
+            RewriteCond %{REQUEST_URI}        !/xml/.*$
+            Include /etc/apache2/conf/IP/MTS_gprs_or.conf
+            RewriteRule   ^(.+)$  http://wap.mtscity.ru/  [L]
+    </IfModule>
+
+
+#    <Directory />
+#        AllowOverride   All
+#    </Directory>
+</VirtualHost>

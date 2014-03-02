@@ -1,0 +1,12 @@
+/var/log/php-fpm-www.log.slow
+/var/log/php-fpm.log {
+    rotate 12
+    weekly
+    notifempty
+    dateext
+    dateformat .%Y-%m-%d
+    compress
+    postrotate
+	test -r /var/run/php-fpm-php5.3.pid && kill -USR1 `cat /var/run/php-fpm-php5.3.pid`
+    endscript
+}
